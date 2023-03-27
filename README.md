@@ -2,6 +2,7 @@
 
 
 ## Object
+
 Create a backend for a petshop whos wants to sell products and adopt pets.
 The main go is to practie: nodejs, typescript, aws bucket, RabbitMQ, Elastic Search in microservices architecture.
 
@@ -23,6 +24,14 @@ The project will has two main gols:
 - Users
 
 
+### microservices
+
+- ms-store
+- ms-store-cart
+- ms-store-product
+- ms-store-tracking
+
+
 ## Adoption
 
 
@@ -42,3 +51,21 @@ The project will has two main gols:
 - Responsability Contract
 
 
+### microservices
+
+- ms-adopt
+- ms-adopt-clinic
+- ms-adopt-animal
+- ms-adopt-process
+
+### Shared microservices
+
+- ms-user
+- ms-very-expensive-bank
+- ms-files
+- ms-auth
+
+
+# Nest steps
+
+- Make diagrams
