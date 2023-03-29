@@ -4,7 +4,7 @@
 ## 1 Object
 
 Create a backend for a petshop whos wants to sell products and adopt pets.
-The main go is to practie: nodejs, typescript, aws bucket, RabbitMQ, Elastic Search in microservices architecture.
+The main go is to practie: nodejs, typescript, aws bucket, activeMQ(in the future gRPC), Elastic Search in microservices architecture.
 
 
 ## 2 Resume
@@ -63,49 +63,82 @@ The project will has two main gols:
 
 
 #### 4.4.1 Insert new animal
-- POST to mp-adopt
-- mp-adopt POST to mp-storage with de animals photos
-- mp-adopt POST to mp-adopt-process to start the process
-- mp-adopt-process return the process id for that animal 
+- POST to ms-adopt
+- ms-adopt POST to ms-storage with de animals photos
+- ms-adopt POST to ms-adopt-process to start the process
+- ms-adopt-process return the process id for that animal 
 
 
 #### 4.4. Reopen concluded adoption process 
-- mp-adopt GET to mp-adopt-animal
-- mp-adopt PUT to mp-adopt-process passing the id animal
-- mp-adopt-process check if the animal has a previous process
-- mp-adopt-process create a history for the old process
-- mp-adopt-process reinit the process
-- mp-adopt-process return the id process
+- ms-adopt GET to ms-adopt-animal
+- ms-adopt PATCH to ms-adopt-process passing the id animal
+- ms-adopt-process check if the animal has a previous process
+- ms-adopt-process create a history for the old process
+- ms-adopt-process reinit the process
+- ms-adopt-process return the id process
 
 
 #### 4.4.3 Insert user adopter
-- PUT to mp-adopt
-- mp-adopt GET mp-user for the user exists by document number
-- mp-adopt PUT mp-user with the new user
-- mp-adopt return success
+- PATCH to ms-adopt
+- ms-adopt GET ms-user for the user exists by document number
+- ms-adopt PATCH ms-user with the new user
+- ms-adopt return success
 
 
 #### 4.4.4 Insert user employee
+- POST to ms-user
+- valid if the user exists
+- return the user id
 
 #### 4.4. Search animal 
-- GET to mp-adopt
-- mp-adopt GET to mp-adopt-animal
-- mp-adopt-animal paginate the results in 50 rows
+- GET to ms-adopt
+- ms-adopt GET to ms-adopt-animal
+- ms-adopt-animal paginate the results in 50 rows
 
 
 #### 4.4. Search process by step
-- GET to mp-adopt
-- mp-adopt GET to mp-adopt-process passing the id process
-- mp-adopt-process return the process with the step
+- GET to ms-adopt
+- ms-adopt GET to ms-adopt-process passing the id process
+- ms-adopt-process return the process with the step
 
 
 #### 4.4. Send animal to the clinic
-#### 4.4. Vet analysies ????
+- POST to ms-adopt
+- mp-adopt POST to mp-adopt-process passing the animal id and the clinic id
+- check if is the correct step
+- update the step
+- update the database if the info
+
+
+#### 4.4. Veterinary analysies the animal
+- POST to mp-adopt
+- mp-adopt POST to mp-adopt-process 
+- passing the veterinary text
+- check if is the correct step
+- update the step
+- update the database if the info
+
+
 #### 4.4. Show animal in the moral
+- POST to ms-adopt
+- ms-adopt POST to ms-adopt-process
+- passing the animal id
+- Only animals with the other steps are ok
+- Change step to MORAL
+- Enable the animal to appear in the moral
+
+
 #### 4.4. Adopter apply for animal
+- POST to mp-adopt
+- ms-adopt POST to ms-adopt-process
+- passing the user id and the animal id
+- check if the animal is on step MORAL
+- update step to USER_APPLYING
+- PATCH to mp-adopt-animal to unable the animal to show in moral
+
+#### 4.4. Schedule the interview
 #### 4.4. Make interview
 #### 4.4. Sign responsability contract
-
 
 ## 5 Shared microservices
 
