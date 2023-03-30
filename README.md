@@ -51,12 +51,7 @@ The project will has two main gols:
 
 
 ### 4.3 Adoption Process
-- Insert an animal
-- Veterinary exams the animal
-- Expo the animal on the mural
-- User apply for some animal
-- Interview
-- Responsability Contract
+<image with the diagram>
 
 
 ### 4.4 User cases
@@ -104,15 +99,15 @@ The project will has two main gols:
 
 #### 4.4. Send animal to the clinic
 - POST to ms-adopt
-- mp-adopt POST to mp-adopt-process passing the animal id and the clinic id
+- ms-adopt POST to ms-adopt-process passing the animal id and the clinic id
 - check if is the correct step
 - update the step
 - update the database if the info
 
 
 #### 4.4. Veterinary analysies the animal
-- POST to mp-adopt
-- mp-adopt POST to mp-adopt-process 
+- POST to ms-adopt
+- ms-adopt POST to ms-adopt-process 
 - passing the veterinary text
 - check if is the correct step
 - update the step
@@ -129,16 +124,40 @@ The project will has two main gols:
 
 
 #### 4.4. Adopter apply for animal
-- POST to mp-adopt
+- POST to ms-adopt
 - ms-adopt POST to ms-adopt-process
 - passing the user id and the animal id
 - check if the animal is on step MORAL
 - update step to USER_APPLYING
-- PATCH to mp-adopt-animal to unable the animal to show in moral
+- PATCH to ms-adopt-animal to unable the animal to show in moral
+
 
 #### 4.4. Schedule the interview
-#### 4.4. Make interview
+- passing the process id, user adopter id, user employee id and a data
+- POST to ms-adopt
+- ms-adopt POST to ms-adopt-process
+- check if user adopter has not other process no finished
+- check if the animal is on the MORAL step
+- update step to INTERVIEW_SCHEDULED
+- update user to the process
+
+#### 4.4. Interview Result
+- passing the process id, aproved boolean
+- POST to ms-adopt
+- ms-adopt POST to ms-adopt-process
+- check if step is INTERVIEW_SCHEDULED
+- update decision to the process
+- if not aproved, finally the process
+- if aproved, update step to CONTRACT
+
+
 #### 4.4. Sign responsability contract
+- passing a pdf file and the process id
+- POST to ms-adopt
+- ms-adopt POST to ms-adopt-process
+- save file on aws s3
+- update process to FINALLY
+
 
 ## 5 Shared microservices
 
