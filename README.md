@@ -49,15 +49,17 @@ The project will has two main gols:
 - ms-adopt-animal
 - ms-adopt-process
 
+![Adoption Microservices overview](https://github.com/vyctorhff/petshop/docs/diagrams/adoption-ms-overview.png)
+
 
 ### 4.3 Adoption Process
-<image with the diagram>
+![Adoption Process flow](https://github.com/vyctorhff/petshop/docs/diagrams/adoption-process.png)
 
 
 ### 4.4 User cases
 
 
-#### 4.4.1 Insert new animal
+#### 4.4.1 Create new animal
 - POST to ms-adopt
 - ms-adopt POST to ms-storage with de animals photos
 - ms-adopt POST to ms-adopt-process to start the process
@@ -177,9 +179,10 @@ The project will has two main gols:
 
 
 #### 5.1.2 Create user
-
+- Passing perfil id, name, document number
 - Post to ms-user
 - Checking if user login exists
+- Return 201 create status
 
 
 #### 5.1.3 create file aws bucket
@@ -190,7 +193,12 @@ The project will has two main gols:
 - Return file key
 
 
-# Nest steps
+#### 5.1.4 Search perfils
+- Get to ms-user
+- Return a list with perfils
 
-- Continue business rules
-- Make diagrams
+
+# Next Steps
+
+- Develop mp-user(perfil search)
+- Develop mp-user
