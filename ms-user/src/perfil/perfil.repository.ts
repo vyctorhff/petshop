@@ -5,9 +5,9 @@ import { Perfil } from './domains/perfil.domain';
 export class PerfilRepository {
   findAll(): Perfil[] {
     return [
-        {id: 1, name: 'admin' },
-        {id: 1, name: 'employee' },
-        {id: 1, name: 'user' }
+      { id: 1, name: 'admin' },
+      { id: 1, name: 'employee' },
+      { id: 1, name: 'user' },
     ];
   }
 

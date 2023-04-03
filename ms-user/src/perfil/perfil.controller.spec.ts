@@ -2,6 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { PerfilController } from './perfil.controller';
 import { PerfilService } from './perfil.service';
 import { PerfilRepository } from './perfil.repository';
+import { AutorizationService } from './autorization.service';
 
 describe('PerfilController', () => {
   let controller: PerfilController;
@@ -13,6 +14,7 @@ describe('PerfilController', () => {
       providers: [
         PerfilRepository,
         PerfilService,
+        AutorizationService,
       ],
     }).compile();
 
