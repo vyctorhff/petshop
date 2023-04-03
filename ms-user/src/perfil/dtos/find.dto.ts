@@ -1,4 +1,3 @@
-
 export class FindDTO {
-    constructor(id:number, nome:string) {}
+  constructor(public id: number, public nome: string) {}
 }

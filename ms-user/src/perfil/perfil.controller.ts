@@ -5,14 +5,25 @@ import { FindDTO } from './dtos/find.dto';
 
 @Controller('perfil')
 export class PerfilController {
-  constructor(private readonly perfilService: PerfilService) {}
+  constructor(private readonly service: PerfilService) {}
 
   @Get()
-  find(@Query() findDto: FindDTO): Perfil[] {
-    return [
-      { name: 'admin' },
-      { name: 'employee' },
-      { name: 'user' },
-    ];
+  async find(@Query() findDto: FindDTO): Promise<Perfil[]> {
+    return this.service.findAll();
+  }
+
+  @Get('check/admin')
+  isUserAdmin() {
+    return this.service.isUserAdmin();
+  }
+
+  @Get('check/employee')
+  isUserEmployee() {
+    return this.service.isUserEmployee();
+  }
+
+  @Get('check/')
+  isUserBasic() {
+    return this.service.isUserBasic();
   }
 }
