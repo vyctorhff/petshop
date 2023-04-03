@@ -1,8 +1,11 @@
 import { Injectable } from '@nestjs/common';
+
 import { Perfil } from './domains/perfil.domain';
+import { UserAutorization } from './dtos/user-autorization.dto';
 
 @Injectable()
 export class PerfilRepository {
+
   findAll(): Perfil[] {
     return [
       { id: 1, name: 'admin' },
@@ -11,15 +14,15 @@ export class PerfilRepository {
     ];
   }
 
-  isUserAdmin(): boolean {
+  isUserAdmin(user: UserAutorization): boolean {
     return false;
   }
 
-  isUserEmployee(): boolean {
+  isUserEmployee(user: UserAutorization): boolean {
     return false;
   }
 
-  isUserBasic(): boolean {
+  isUserBasic(user: UserAutorization): boolean {
     return false;
   }
 }

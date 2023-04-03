@@ -11,11 +11,7 @@ describe('PerfilController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [PerfilController],
-      providers: [
-        PerfilRepository,
-        PerfilService,
-        AutorizationService,
-      ],
+      providers: [PerfilRepository, PerfilService, AutorizationService],
     }).compile();
 
     controller = module.get<PerfilController>(PerfilController);

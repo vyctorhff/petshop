@@ -1,8 +1,10 @@
 import { Controller, Get, Query } from '@nestjs/common';
+
 import { PerfilService } from './perfil.service';
 import { Perfil } from './domains/perfil.domain';
 import { FindDTO } from './dtos/find.dto';
 import { AutorizationService } from './autorization.service';
+import { UserAutorization } from './dtos/user-autorization.dto';
 
 @Controller('perfil')
 export class PerfilController {
@@ -17,17 +19,17 @@ export class PerfilController {
   }
 
   @Get('check/admin')
-  isUserAdmin() {
-    return this.autorizationService.isUserAdmin();
+  isUserAdmin(@Query() user: UserAutorization) {
+    return this.autorizationService.isUserAdmin(user);
   }
 
   @Get('check/employee')
-  isUserEmployee() {
-    return this.autorizationService.isUserEmployee();
+  isUserEmployee(@Query() user: UserAutorization) {
+    return this.autorizationService.isUserEmployee(user);
   }
 
   @Get('check/')
-  isUserBasic() {
-    return this.autorizationService.isUserBasic();
+  isUserBasic(@Query() user: UserAutorization) {
+    return this.autorizationService.isUserBasic(user);
   }
 }

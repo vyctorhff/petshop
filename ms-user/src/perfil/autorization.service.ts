@@ -1,19 +1,21 @@
 import { Injectable } from '@nestjs/common';
+
 import { PerfilRepository } from './perfil.repository';
+import { UserAutorization } from './dtos/user-autorization.dto';
 
 @Injectable()
 export class AutorizationService {
   constructor(private readonly repository: PerfilRepository) {}
 
-  isUserAdmin(): boolean {
-    return this.repository.isUserAdmin();
+  isUserAdmin(user: UserAutorization): boolean {
+    return this.repository.isUserAdmin(user);
   }
 
-  isUserEmployee(): boolean {
-    return this.repository.isUserEmployee();
+  isUserEmployee(user: UserAutorization): boolean {
+    return this.repository.isUserEmployee(user);
   }
 
-  isUserBasic(): boolean {
-    return this.repository.isUserBasic();
+  isUserBasic(user: UserAutorization): boolean {
+    return this.repository.isUserBasic(user);
   }
 }
