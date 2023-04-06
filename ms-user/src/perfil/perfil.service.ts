@@ -1,12 +1,17 @@
 import { Injectable } from '@nestjs/common';
-import { PerfilRepository } from './perfil.repository';
-import { Perfil } from './domains/perfil.domain';
+
+import { Perfil } from './entities/perfil.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class PerfilService {
-  constructor(private readonly repository: PerfilRepository) {}
+  constructor(
+    @InjectRepository(Perfil)
+    private readonly repository: Repository<Perfil>,
+  ) {}
 
-  findAll(): Perfil[] {
-    return this.repository.findAll();
+  async findAll(): Promise<Perfil[]> {
+    return await this.repository.find({});
   }
 }

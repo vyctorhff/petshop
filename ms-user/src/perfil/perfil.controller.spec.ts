@@ -1,8 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { PerfilController } from './perfil.controller';
 import { PerfilService } from './perfil.service';
-import { PerfilRepository } from './perfil.repository';
 import { AutorizationService } from './autorization.service';
+import { getRepositoryToken } from '@nestjs/typeorm';
+import { Perfil } from './entities/perfil.entity';
 
 describe('PerfilController', () => {
   let controller: PerfilController;
@@ -11,7 +12,14 @@ describe('PerfilController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [PerfilController],
-      providers: [PerfilRepository, PerfilService, AutorizationService],
+      providers: [
+        PerfilService,
+        AutorizationService,
+        {
+          provide: getRepositoryToken(Perfil),
+          useValue: {},
+        },
+      ],
     }).compile();
 
     controller = module.get<PerfilController>(PerfilController);

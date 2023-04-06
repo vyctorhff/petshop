@@ -1,7 +1,7 @@
 import { Controller, Get, Query } from '@nestjs/common';
 
 import { PerfilService } from './perfil.service';
-import { Perfil } from './domains/perfil.domain';
+import { Perfil } from './entities/perfil.entity';
 import { FindDTO } from './dtos/find.dto';
 import { AutorizationService } from './autorization.service';
 import { UserAutorization } from './dtos/user-autorization.dto';

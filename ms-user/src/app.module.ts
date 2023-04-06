@@ -7,7 +7,6 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PerfilModule } from './perfil/perfil.module';
 
-
 @Module({
   imports: [
     ConfigModule.forRoot(),
