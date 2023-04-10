@@ -4,7 +4,7 @@ import { PerfilService } from './perfil.service';
 import { Perfil } from './entities/perfil.entity';
 import { FindDTO } from './dtos/find.dto';
 import { AutorizationService } from './autorization.service';
-import { UserAutorization } from './dtos/user-autorization.dto';
+import { UserAutorizationDto } from './dtos/user-autorization.dto';
 
 @Controller('perfil')
 export class PerfilController {
@@ -19,17 +19,17 @@ export class PerfilController {
   }
 
   @Get('check/admin')
-  isUserAdmin(@Query() user: UserAutorization) {
+  isUserAdmin(@Query() user: UserAutorizationDto) {
     return this.autorizationService.isUserAdmin(user);
   }
 
   @Get('check/employee')
-  isUserEmployee(@Query() user: UserAutorization) {
+  isUserEmployee(@Query() user: UserAutorizationDto) {
     return this.autorizationService.isUserEmployee(user);
   }
 
   @Get('check/')
-  isUserBasic(@Query() user: UserAutorization) {
+  isUserBasic(@Query() user: UserAutorizationDto) {
     return this.autorizationService.isUserBasic(user);
   }
 }
