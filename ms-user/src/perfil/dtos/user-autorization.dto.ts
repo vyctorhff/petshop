@@ -1,3 +1,4 @@
-export class UserAutorization {
-  constructor(public userId: number) {}
+export class UserAutorizationDto {
+
+  id: string;
 }
