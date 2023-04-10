@@ -12,15 +12,15 @@ export class AutorizationService {
     private readonly repository: Repository<Perfil>,
   ) {}
 
-  isUserAdmin(user: UserAutorization): boolean {
-    return false;
+  async isUserAdmin(user: UserAutorization): Promise<boolean> {
+    return Promise.resolve(false);
   }
 
-  isUserEmployee(user: UserAutorization): boolean {
-    return false;
+  async isUserEmployee(user: UserAutorization): Promise<boolean> {
+    return Promise.resolve(false);
   }
 
-  isUserBasic(user: UserAutorization): boolean {
-    return false;
+  async isUserBasic(user: UserAutorization): Promise<boolean> {
+    return Promise.resolve(false);
   }
 }
