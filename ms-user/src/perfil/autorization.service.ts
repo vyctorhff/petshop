@@ -7,7 +7,6 @@ import { Perfil } from './entities/perfil.entity';
 
 @Injectable()
 export class AutorizationService {
-
   constructor(
     @InjectRepository(Perfil)
     private readonly repository: Repository<Perfil>,
@@ -25,7 +24,10 @@ export class AutorizationService {
     return this.checkPermission(user, 'basic');
   }
 
-  async checkPermission(user: UserAutorizationDto, perfilName: string): Promise<boolean> {
+  async checkPermission(
+    user: UserAutorizationDto,
+    perfilName: string,
+  ): Promise<boolean> {
     const result = await this.repository.find({
       relations: {
         users: true,
