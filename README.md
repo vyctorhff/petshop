@@ -200,5 +200,6 @@ The project will has two main gols:
 
 # Next Steps
 
-- Develop mp-user(perfil search)
-- Develop mp-user
+- Add logger
+- Develop ms-user
+- Develop ms-auth
