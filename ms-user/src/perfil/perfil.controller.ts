@@ -1,4 +1,4 @@
-import { Controller, Get, Query, Body } from '@nestjs/common';
+import { Controller, Get, Query, Param, Body } from '@nestjs/common';
 
 import { PerfilService } from './perfil.service';
 import { Perfil } from './entities/perfil.entity';
@@ -15,21 +15,21 @@ export class PerfilController {
 
   @Get()
   async find(@Body() findDto: FindDTO): Promise<Perfil[]> {
-    return this.service.findAll();
+    return await this.service.findAll(findDto);
   }
 
-  @Get('check/admin')
-  isUserAdmin(@Query() user: UserAutorizationDto) {
-    return this.autorizationService.isUserAdmin(user);
+  @Get('v1/check/admin')
+  async isUserAdmin(@Body() user: UserAutorizationDto): Promise<boolean> {
+    return await this.autorizationService.isUserAdmin(user);
   }
 
-  @Get('check/employee')
-  isUserEmployee(@Query() user: UserAutorizationDto) {
-    return this.autorizationService.isUserEmployee(user);
+  @Get('v1/check/employee')
+  async isUserEmployee(@Body() user: UserAutorizationDto): Promise<boolean> {
+    return await this.autorizationService.isUserEmployee(user);
   }
 
-  @Get('check/basic')
-  isUserBasic(@Query() user: UserAutorizationDto) {
-    return this.autorizationService.isUserBasic(user);
+  @Get('v1/check/basic')
+  async isUserBasic(@Body() user: UserAutorizationDto): Promise<boolean> {
+    return await this.autorizationService.isUserBasic(user);
   }
 }
