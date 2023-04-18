@@ -13,6 +13,7 @@ enum PerfilType {
 
 @Injectable()
 export class AutorizationService {
+
   constructor(
     @InjectRepository(Perfil)
     private readonly repository: Repository<Perfil>,
@@ -49,6 +50,6 @@ export class AutorizationService {
       where: queryWhere,
     });
 
-    return !result && result.length > 0;
+    return result && result.length > 0;
   }
 }
