@@ -11,7 +11,7 @@ const typeOrmFactory = (
   password: configService.get<string>('DATABASE_PASS'),
   database: configService.get<string>('DATABASE_NAME'),
   synchronize: configService.get<boolean>('DATABASE_SYNC'),
-  entities: [__dirname + '/**/*.entity{.ts,.js}'],
+  entities: [__dirname + '/**/*.entity.ts'],
 });
 
 export default typeOrmFactory;
