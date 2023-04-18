@@ -36,19 +36,25 @@ export class AutorizationService {
     perfil: PerfilType,
   ): Promise<boolean> {
 
-    const queryWhere = {
-      name: perfil.toString(),
-      users: {
-        id: user.id,
-      },
-    };
+    const result = await this.repository.createQueryBuilder('perfil')
+      .innerJoin('perfil.users', 'user')
+      .where('user.id = :id', { id: user.id })
+      .andWhere('perfil.name = :name', { name: perfil.toString()})
+      .getMany();
 
-    const result = await this.repository.find({
-      relations: {
-        users: true,
-      },
-      where: queryWhere,
-    });
+    // const queryWhere = {
+    //   name: perfil.toString(),
+    //   users: {
+    //     id: user.id,
+    //   },
+    // };
+
+    // const result = await this.repository.find({
+    //   relations: {
+    //     users: true,
+    //   },
+    //   where: queryWhere,
+    // });
 
     return result && result.length > 0;
   }
