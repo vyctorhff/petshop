@@ -7,7 +7,6 @@ import { FindDTO } from './dtos/find.dto';
 
 @Injectable()
 export class PerfilService {
-
   private readonly logger = new Logger('[PerfilService]');
 
   constructor(
@@ -16,7 +15,7 @@ export class PerfilService {
   ) {}
 
   async findAll(findDto: FindDTO): Promise<Perfil[]> {
-    const builder = this.repository.createQueryBuilder("perfil");
+    const builder = this.repository.createQueryBuilder('perfil');
 
     if (findDto.hasId()) {
       builder.andWhere('perfil.id = :id', { id: findDto.id });
