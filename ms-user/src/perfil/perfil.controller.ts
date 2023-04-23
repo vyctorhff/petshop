@@ -1,4 +1,4 @@
-import { Controller, Get, Query, Param, Body } from '@nestjs/common';
+import { Controller, Get, Body } from '@nestjs/common';
 
 import { PerfilService } from './perfil.service';
 import { Perfil } from './entities/perfil.entity';
@@ -13,7 +13,7 @@ export class PerfilController {
     private readonly autorizationService: AutorizationService,
   ) {}
 
-  @Get()
+  @Get('v1')
   async find(@Body() findDto: FindDTO): Promise<Perfil[]> {
     return await this.service.findAll(findDto);
   }

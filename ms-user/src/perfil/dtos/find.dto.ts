@@ -1,5 +1,4 @@
 export class FindDTO {
-
   constructor(public id: number, public name: string) {}
 
   hasId(): boolean {
