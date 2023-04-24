@@ -17,6 +17,15 @@ services:
     ports:
       - "5432:5432"
     environment:
+      # create the database with other way
+      POSTGRES_USER=dev
+      POSTGRES_PASSWORD=123
+    volumes:
+      - app-storage:/var/lib/postgresql/data
+
+volumes:
+  app-storage:
+    external: true
 
 networks:
   app-net:
