@@ -206,8 +206,8 @@ The project will has two main gols:
 `
  npm run typeorm migration:create .\src\migrations\MIGRATION_NAME
 `
+
 # Next Steps
 
-- Add logger
 - Develop ms-user
 - Develop ms-auth
