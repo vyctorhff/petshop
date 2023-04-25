@@ -37,10 +37,12 @@ export class AutorizationService {
     const result = await this.repository
       .createQueryBuilder('perfil')
       .innerJoin('perfil.users', 'user')
-      .where('user.id = :id', { id: user.id })
-      .andWhere('perfil.name = :name', { name: perfil.toString() })
+      .where('user.id = :id AND perfil.name = :name', {
+        id: user.id,
+        name: perfil.toString(),
+      })
       .getMany();
 
-    return result && result.length > 0;
+    return Array.isArray(result) && result.length > 0;
   }
 }
