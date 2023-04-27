@@ -1,31 +1,39 @@
-version: "2.2"
+version: "3"
 
 services:
   redis:
     image: redis
-    container_name: redis
+    container_name: petshop-redis
     networks:
       - app-net
     ports:
       - "6379:6379"
+    volumes:
+      - petshop-storage:/var/lib/redis/data
 
   postgresql:
-    image: postgresql
-    container_name: postgresql
+    image: postgres
+    container_name: petshop-postgresql
     networks:
       - app-net
     ports:
       - "5432:5432"
     environment:
       # create the database with other way
-      POSTGRES_USER=dev
-      POSTGRES_PASSWORD=123
+      - POSTGRES_USER=dev
+      - POSTGRES_PASSWORD=123
     volumes:
-      - app-storage:/var/lib/postgresql/data
+      - petshop-storage:/var/lib/postgresql/data
+    depends_on:
+      - redis 
 
 volumes:
-  app-storage:
-    external: true
+  petshop-storage:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: "c:/temp/petshop-storage"
 
 networks:
   app-net:
