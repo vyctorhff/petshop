@@ -1,5 +1,7 @@
-import { Controller, Post } from '@nestjs/common';
+import { Controller, Post, Body } from '@nestjs/common';
 import { AuthorizationService } from './authorization.service';
+import { TokenRequestDTO } from './dtos/token.request.dto';
+import { TokenResponseDTO } from './dtos/token.response.dto';
 
 @Controller('authorization')
 export class AuthorizationController {
@@ -7,8 +9,7 @@ export class AuthorizationController {
   constructor(private readonly authService: AuthorizationService) {}
 
   @Post()
-  token() {
-    // TODO: create dto for this request
-    return this.authService.getToken();
+  async token(@Body() tokenRequest: TokenRequestDTO): Promise<TokenResponseDTO> {
+    return await this.authService.getToken(tokenRequest);
   }
 }
