@@ -197,15 +197,6 @@ The project will has two main gols:
 - Get to ms-user
 - Return a list with perfils
 
-# Dev
-
-## Database
-
-### Migrations
-
-`
- npm run typeorm migration:create .\src\migrations\MIGRATION_NAME
-`
 
 # Next Steps
 
