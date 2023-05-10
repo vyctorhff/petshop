@@ -2,16 +2,22 @@ import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { TokenRequestDTO } from './dtos/token.request.dto';
 import { TokenResponseDTO } from './dtos/token.response.dto';
+import { UserExternalService } from 'src/external-api/user-external.service';
 
 @Injectable()
 export class AuthorizationService {
 
   constructor(
     private readonly jwtService: JwtService,
+    private readonly userExternalService: UserExternalService,
   ) {}
 
   async getToken(tokenRequest: TokenRequestDTO): Promise<TokenResponseDTO> {
-    // TODO: call ms-user to find user by enrollment and password
+    const user = await this.userExternalService.getUserByEnrollmentAndPass(
+      tokenRequest.enrollment,
+      tokenRequest.pass,
+    );
+
     // TODO: if user does not exists, throw error 'invalid credentions'
 
     const payload = {

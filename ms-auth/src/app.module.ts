@@ -5,6 +5,7 @@ import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthorizationModule } from './authorization/authorization.module';
+import { ExternalApiModule } from './external-api/external-api.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { AuthorizationModule } from './authorization/authorization.module';
       secret: process.env.JWS_SECRET,
       signOptions: { expiresIn: '180s' },
     }),
+    ExternalApiModule,
   ],
   controllers: [AppController],
   providers: [AppService],
