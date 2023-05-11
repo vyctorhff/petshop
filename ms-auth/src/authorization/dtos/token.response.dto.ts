@@ -1,4 +1,3 @@
-
 export class TokenResponseDTO {
   time: Date;
   token: string;

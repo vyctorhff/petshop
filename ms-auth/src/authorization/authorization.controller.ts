@@ -5,11 +5,12 @@ import { TokenResponseDTO } from './dtos/token.response.dto';
 
 @Controller('authorization')
 export class AuthorizationController {
-
   constructor(private readonly authService: AuthorizationService) {}
 
   @Post()
-  async token(@Body() tokenRequest: TokenRequestDTO): Promise<TokenResponseDTO> {
+  async token(
+    @Body() tokenRequest: TokenRequestDTO,
+  ): Promise<TokenResponseDTO> {
     return await this.authService.getToken(tokenRequest);
   }
 }
