@@ -3,8 +3,11 @@ import { ConfigService } from '@nestjs/config';
 import { HttpService } from '@nestjs/axios';
 import { firstValueFrom } from 'rxjs';
 
-class UserLoginDto {}
+export class UserLoginDto {
+  enrollment: string;
 
+  name: string;
+}
 
 @Injectable()
 export class UserExternalService {
@@ -21,7 +24,7 @@ export class UserExternalService {
     };
 
     const postObserver = this.httpService.post<UserLoginDto>(url, payload);
-    const response = await firstValueFrom(postObserver.pipe())
+    const response = await firstValueFrom(postObserver.pipe());
 
     return response.data;
   }
