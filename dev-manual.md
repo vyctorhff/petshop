@@ -40,7 +40,15 @@ npm i --save bcrypt --save-dev @types/bcrypt
 ## Make a post request
 ``
 
-## Make migrations
+# migrations
+
+## Create
+
 `
- npm run typeorm migration:create .\src\migrations\MIGRATION_NAME
+npm run typeorm migration:create .\src\migrations\MIGRATION_NAME
+`
+
+## Exection
+`
+npm run typeorm migration:run -- -d path-to-datasource-config
 `
