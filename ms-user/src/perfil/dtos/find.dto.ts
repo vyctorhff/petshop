@@ -1,5 +1,9 @@
 export class FindDTO {
-  constructor(public id: number, public name: string) {}
+  id: number;
+
+  name: string;
+
+  constructor() {}
 
   hasId(): boolean {
     return Boolean(this.id);
