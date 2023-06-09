@@ -23,7 +23,7 @@ When a microservice needs to call another microservice, should create a module n
 
 npm i --save @nestjs/config
 npm i --save @nestjs/axios 
-npm i --save @nestjs/typorm pg
+npm i --save @nestjs/typeorm pg
 npm i --save bcrypt --save-dev @types/bcrypt
 
 
@@ -31,24 +31,12 @@ npm i --save bcrypt --save-dev @types/bcrypt
 
 4 spaces
 
-
-# How to
-
-## Make a get request
-``
-
-## Make a post request
-``
-
 # migrations
 
 ## Create
-
 `
-npm run typeorm migration:create .\src\migrations\MIGRATION_NAME
+npx typeorm migration:create .\src\migrations\MIGRATION_NAME
 `
 
 ## Exection
-`
-npm run typeorm migration:run -- -d path-to-datasource-config
-`
+Execute the application
