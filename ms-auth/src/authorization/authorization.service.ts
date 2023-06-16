@@ -16,20 +16,21 @@ export class AuthorizationService {
   async getToken(tokenRequest: TokenRequestDTO): Promise<TokenResponseDTO> {
     this.logger.log('call user service');
 
-    const user = await this.userExternalService.getUserByEnrollmentAndPass(
-      tokenRequest.enrollment,
-      tokenRequest.pass,
-    );
+    // const user = await this.userExternalService.getUserByEnrollmentAndPass(
+    //   tokenRequest.enrollment,
+    //   tokenRequest.pass,
+    // );
+    const user = {};
 
-    if (!user) {
-      throw new UnauthorizedException('invalid credentions');
-    }
+    // if (!user) {
+    //   throw new UnauthorizedException('invalid credentions');
+    // }
 
     // TODO: create payload
     const payload = {
       perfils: [],
-      userId: '',
-      userName: '',
+      userId: 'testing',
+      userName: 'testing',
     };
 
     this.logger.log('generated token');

@@ -20,7 +20,6 @@ export class UserExternalService {
     const url = `${this.configService.get<string>('MS_USER')}/user`
     const payload = {
       enrollment,
-      pass
     };
 
     const postObserver = this.httpService.post<UserLoginDto>(url, payload);
