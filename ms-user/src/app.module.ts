@@ -3,6 +3,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { UserModule } from './user/user.module';
+import { PerfilModule } from './perfil/perfil.module';
 
 @Module({
   imports: [
@@ -17,6 +19,8 @@ import { AppService } from './app.service';
       migrations: [`${__dirname}/migrations/*-*{.ts,*.js}`],
       migrationsRun: true,
     }),
+    UserModule,
+    PerfilModule,
   ],
   controllers: [AppController],
   providers: [AppService],
