@@ -21,6 +21,7 @@ export class AddRelationUserAndPerfil1686530598229 implements MigrationInterface
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.query(`DROP TABLE ${userPerfilTable}`);
     }
 
 }
