@@ -1,4 +1,4 @@
-import { Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 import { Perfil } from 'src/perfil/entities/perfil.entity';
 import { DataNames } from './../../migrations/dataNames'
@@ -9,7 +9,11 @@ export class User {
   @PrimaryGeneratedColumn()
   id: string;
 
+  @Column()
   enrollment: string;
+
+  @Column()
+  name: string;
 
   @ManyToMany(() => Perfil, (perfil) => perfil.users)
   @JoinTable({
