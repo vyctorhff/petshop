@@ -32,7 +32,6 @@ export class UserService {
   async getUserByEnrollment(dto: UserEnrollmentRequestDTO): Promise<User> {
     const builder = this.repository.createQueryBuilder('userr');
 
-    // builder.where("userr.enrollment = :enrollment", { enrollment: dto.enrollment });
     builder.where("userr.enrollment = :enrollment", dto);
     return builder.getOne();
   }
