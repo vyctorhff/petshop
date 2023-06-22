@@ -31,6 +31,11 @@ npm i --save bcrypt --save-dev @types/bcrypt
 
 4 spaces
 
+
+# dtos
+	*.request.dto
+	*.response.dto
+
 # migrations
 
 ## Create
