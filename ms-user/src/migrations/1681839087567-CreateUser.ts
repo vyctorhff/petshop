@@ -13,15 +13,15 @@ export class CreateUser1681839087567 implements MigrationInterface {
         );
     `);
 
-  //   await queryRunner.query(`
-  //     CREATE TABLE ${DataNames.USER_PERFIL.toString()}(
-  //         id_user INT,
-  //         id_perfil INT,
+    //   await queryRunner.query(`
+    //     CREATE TABLE ${DataNames.USER_PERFIL.toString()}(
+    //         id_user INT,
+    //         id_perfil INT,
 
-  //         CONSTRAINT fk_user FOREIGN KEY (id_user) REFERENCES ${userTable} (id)",
-  //         CONSTRAINT fk_perfil FOREIGN KEY (id_perfil) REFERENCES ${userPerfilTable} (id)",
-  //     );
-  // `);
+    //         CONSTRAINT fk_user FOREIGN KEY (id_user) REFERENCES ${userTable} (id)",
+    //         CONSTRAINT fk_perfil FOREIGN KEY (id_perfil) REFERENCES ${userPerfilTable} (id)",
+    //     );
+    // `);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
