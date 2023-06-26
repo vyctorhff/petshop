@@ -1,9 +1,13 @@
-import { User } from "../entities/user.entity";
+import { User } from '../entities/user.entity';
 
 export const toUser = (dto: UserCreateRequestDTO): User => {
-  // TODO:  fazer
-  return new User();
-}
+  return {
+    id: '',
+    name: dto.name,
+    enrollment: dto.enrollment,
+    perfils: [],
+  };
+};
 
 export class UserCreateRequestDTO {
   name: string;
