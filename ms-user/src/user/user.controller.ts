@@ -1,4 +1,4 @@
-import { Controller, Post, Get, Body, HttpCode, NotImplementedException } from '@nestjs/common';
+import { Controller, Post, Get, Body, HttpCode } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserEnrollmentRequestDTO } from './dtos/user-enrollment.request.dto';
 import { User } from './entities/user.entity';
@@ -6,7 +6,6 @@ import { UserCreateRequestDTO } from './dtos/create.request.dto';
 
 @Controller('user')
 export class UserController {
-
   constructor(private readonly service: UserService) {}
 
   @Post()
@@ -16,7 +15,9 @@ export class UserController {
   }
 
   @Get()
-  async getUserByEnrollment(@Body() dto: UserEnrollmentRequestDTO): Promise<User> {
+  async getUserByEnrollment(
+    @Body() dto: UserEnrollmentRequestDTO,
+  ): Promise<User> {
     return this.service.getUserByEnrollment(dto);
   }
 }

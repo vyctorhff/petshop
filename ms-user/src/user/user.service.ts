@@ -12,19 +12,21 @@ export class UserService {
 
   constructor(
     @InjectRepository(User)
-    private readonly repository: Repository<User>
+    private readonly repository: Repository<User>,
   ) {}
 
   async create(dto: UserCreateRequestDTO): Promise<void> {
-    const userExists = await this.getUserByEnrollment({ enrollment: dto.enrollment });
+    const userExists = await this.getUserByEnrollment({
+      enrollment: dto.enrollment,
+    });
 
     if (!userExists) {
-      this.logger.error(`User with already exists: ${dto.enrollment }`);
+      this.logger.error(`User with already exists: ${dto.enrollment}`);
       throw new BadRequestException('user already exists');
     }
 
     const user = toUser(dto);
-    this.repository.insert(user);
+    await this.repository.insert(user);
 
     this.logger.log('User created');
   }
@@ -32,7 +34,7 @@ export class UserService {
   async getUserByEnrollment(dto: UserEnrollmentRequestDTO): Promise<User> {
     const builder = this.repository.createQueryBuilder('userr');
 
-    builder.where("userr.enrollment = :enrollment", dto);
+    builder.where('userr.enrollment = :enrollment', dto);
     return builder.getOne();
   }
 }

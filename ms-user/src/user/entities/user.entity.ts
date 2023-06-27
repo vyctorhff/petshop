@@ -1,11 +1,16 @@
-import { Entity, Column, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  JoinTable,
+  ManyToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 import { Perfil } from 'src/perfil/entities/perfil.entity';
-import { DataNames } from './../../migrations/dataNames'
+import { DataNames } from './../../migrations/dataNames';
 
-@Entity({name: 'tb_user'})
+@Entity({ name: 'tb_user' })
 export class User {
-
   @PrimaryGeneratedColumn()
   id: string;
 
@@ -20,7 +25,7 @@ export class User {
     name: DataNames.USER_PERFIL.toString(),
     joinColumn: {
       name: 'id_user',
-      referencedColumnName: 'id'
+      referencedColumnName: 'id',
     },
     inverseJoinColumn: {
       name: 'id_perfil',
