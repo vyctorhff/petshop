@@ -1,9 +1,10 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { PerfilController } from './perfil.controller';
-import { PerfilService } from './perfil.service';
-import { AutorizationService } from './autorization.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { Perfil } from './entities/perfil.entity';
+
+import { PerfilController } from '../perfil.controller';
+import { PerfilService } from '../perfil.service';
+import { AutorizationService } from '../autorization.service';
+import { Perfil } from '../entities/perfil.entity';
 
 describe('PerfilController', () => {
   let controller: PerfilController;

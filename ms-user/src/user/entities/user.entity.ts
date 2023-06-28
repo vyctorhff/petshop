@@ -6,7 +6,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
-import { Perfil } from 'src/perfil/entities/perfil.entity';
+import { Perfil } from '../../perfil/entities/perfil.entity';
 import { DataNames } from './../../migrations/dataNames';
 
 @Entity({ name: 'tb_user' })

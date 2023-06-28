@@ -1,7 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { PerfilService } from './perfil.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { Perfil } from './entities/perfil.entity';
+
+import { PerfilService } from '../perfil.service';
+import { Perfil } from '../entities/perfil.entity';
 
 describe('PerfilService', () => {
   let service: PerfilService;
