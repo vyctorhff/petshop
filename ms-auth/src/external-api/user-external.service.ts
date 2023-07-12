@@ -16,8 +16,10 @@ export class UserExternalService {
     private httpService: HttpService,
   ) {}
 
-  async getUserByEnrollmentAndPass(enrollment: string, pass: string): Promise<UserLoginDto> {
-    const url = `${this.configService.get<string>('MS_USER')}/user`
+  async getUserByEnrollmentAndPass(
+    enrollment: string,
+  ): Promise<UserLoginDto> {
+    const url = `${this.configService.get<string>('MS_USER')}/user`;
     const payload = {
       enrollment,
     };
