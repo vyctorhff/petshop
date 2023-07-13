@@ -2,7 +2,6 @@ import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
 export class Authentication {
-
   @PrimaryGeneratedColumn()
   id: string;
 
