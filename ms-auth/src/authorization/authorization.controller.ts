@@ -23,7 +23,7 @@ export class AuthorizationController {
 
   @Post('create')
   async create(
-    @Body() dto: AuthenticationCreateRequestDTO
+    @Body() dto: AuthenticationCreateRequestDTO,
   ): Promise<Authentication> {
     return this.createService.create(dto);
   }

@@ -22,9 +22,11 @@ export class AuthorizationService {
   async getToken(tokenRequest: TokenRequestDTO): Promise<TokenResponseDTO> {
     this.logger.log('call user service');
 
+    // TODO: check if the pass word and enrollment is correct in the ms-auth database
+    // then, check if the user exists in ms-user service
+
     const user = await this.userExternalService.getUserByEnrollmentAndPass(
       tokenRequest.enrollment,
-      tokenRequest.pass,
     );
 
     if (!user) {
