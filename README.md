@@ -26,6 +26,8 @@ The project will has two main gols:
 
 ### 3.2 microservices
 
+- ms-auth
+- ms-user
 - ms-store
 - ms-store-cart
 - ms-store-product
@@ -200,5 +202,4 @@ The project will has two main gols:
 
 # Next Steps
 
-- Develop ms-user
-- Develop ms-auth
+Change for java implementation
