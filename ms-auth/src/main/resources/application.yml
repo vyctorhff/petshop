@@ -4,7 +4,7 @@ server:
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/priview
+    url: jdbc:postgresql://localhost:5432/petshop-ms-auth
     username: dev
     password: 123
     hikari:
@@ -14,3 +14,7 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: validate
+
+security:
+  jwt:
+    key: AN_EXTREMALY_DIFFICULT_STRING_TO_UNDERSTAND
