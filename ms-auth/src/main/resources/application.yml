@@ -4,12 +4,12 @@ server:
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/petshop-ms-auth
+    url: jdbc:postgresql://localhost:5433/petshop-ms-auth
     username: dev
     password: 123
-    hikari:
-      connectionTimeout: 1000
-      maximumPoolSize: 1
+#    hikari:
+#      connectionTimeout: 10000
+#      maximumPoolSize: 1
   jpa:
     show-sql: true
     hibernate:
