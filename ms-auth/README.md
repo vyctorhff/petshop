@@ -43,3 +43,11 @@ Body
 
 Return
 `Status http - 202 Accepted`
+
+
+# Next Steps
+
+- Fix hikari pool configuration
+- Add controller create
+- Add controller check 
+- Add controller delete
