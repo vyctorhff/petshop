@@ -11,6 +11,10 @@
 
 ## Tech UCs
 
+## Swagger
+http://localhost:8085/cc-authentication-service/swagger-ui/index.html
+
+
 ### Create authentication
 
 Endpoint
@@ -44,9 +48,9 @@ Body
 Return
 `Status http - 202 Accepted`
 
-
 # Next Steps
 
+- Add swagger
 - Fix hikari pool configuration
 - Add controller create
 - Add controller check 
