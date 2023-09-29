@@ -173,11 +173,12 @@ The project will has two main gols:
 
 ### 5.1 User Cases
 
-#### 5.1.1 User login
+#### 5.1.1 Authentication
 
 - Passing id user and pass to ms-auth
 - Checking id user in ms-user
 - Generate jwt token and refresh token
+- Delete authentication
 
 
 #### 5.1.2 Create user
@@ -202,4 +203,9 @@ The project will has two main gols:
 
 # Next Steps
 
-Change for java implementation
+- Change for java implementation(in progress)
+- Gateway: config
+- Gateway: add uc for create user with auth
+- ms-user: add basic libs
+- ms-user: add controllers
+
