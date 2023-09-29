@@ -2,19 +2,22 @@ package br.com.petshop.auth.controllers;
 
 import br.com.petshop.auth.controllers.dto.CreateAuthenticationRequestDTO;
 import br.com.petshop.auth.controllers.dto.TokenRequestDTO;
+import br.com.petshop.auth.controllers.dto.TokenResponseDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("auth")
+@RequestMapping("auth/v1")
 @Slf4j
 @Tag(name = "Endpoint for authentication")
-public class AuthenticationController {
+public class AuthenticationControllerV1 {
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Create the authentication")
     public ResponseEntity<Void> create(@RequestBody CreateAuthenticationRequestDTO dto) {
         return ResponseEntity.ok().build();
@@ -22,13 +25,14 @@ public class AuthenticationController {
 
     @GetMapping
     @Operation(summary = "Return token for authenticated user")
-    public boolean getToken(@RequestBody TokenRequestDTO dto) {
-        return false;
+    public ResponseEntity<TokenResponseDTO> getToken(@RequestBody TokenRequestDTO dto) {
+        return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("${}")
+    @DeleteMapping("{enrollment}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
     @Operation
-    public ResponseEntity<Void> delete(@PathVariable("") String enrollment) {
+    public ResponseEntity<Void> delete(@PathVariable String enrollment) {
         return ResponseEntity.ok().build();
     }
 }
