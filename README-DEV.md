@@ -1,4 +1,4 @@
-# Create a new microservice
+# Create a new microservice - ATTENTION - UPDATE FOR JAVA!!!
 
 ## Folder structure
 
