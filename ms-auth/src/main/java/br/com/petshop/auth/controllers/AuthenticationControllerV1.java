@@ -3,8 +3,12 @@ package br.com.petshop.auth.controllers;
 import br.com.petshop.auth.controllers.dto.CreateAuthenticationRequestDTO;
 import br.com.petshop.auth.controllers.dto.TokenRequestDTO;
 import br.com.petshop.auth.controllers.dto.TokenResponseDTO;
+import br.com.petshop.auth.service.CreateAuthenticationService;
+import br.com.petshop.auth.service.DeleteAuthenticationService;
+import br.com.petshop.auth.service.TokenService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,9 +16,16 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("auth/v1")
+@RequiredArgsConstructor
 @Slf4j
 @Tag(name = "Endpoint for authentication")
 public class AuthenticationControllerV1 {
+
+    private final TokenService tokenService;
+
+    private final CreateAuthenticationService createAuthenticationService;
+
+    private final DeleteAuthenticationService deleteAuthenticationService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
