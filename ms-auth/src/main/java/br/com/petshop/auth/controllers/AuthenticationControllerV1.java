@@ -27,7 +27,7 @@ public class AuthenticationControllerV1 {
 
     private final DeleteAuthenticationService deleteAuthenticationService;
 
-    @PostMapping
+    @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Create the authentication")
     public ResponseEntity<Void> create(@RequestBody CreateAuthenticationRequestDTO dto) {
