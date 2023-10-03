@@ -16,5 +16,7 @@ spring:
       ddl-auto: validate
 
 security:
+  user:
+    password: 123
   jwt:
     key: AN_EXTREMALY_DIFFICULT_STRING_TO_UNDERSTAND
