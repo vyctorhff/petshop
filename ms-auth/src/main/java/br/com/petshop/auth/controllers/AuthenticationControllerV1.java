@@ -1,8 +1,8 @@
 package br.com.petshop.auth.controllers;
 
-import br.com.petshop.auth.controllers.dto.CreateAuthenticationRequestDTO;
-import br.com.petshop.auth.controllers.dto.TokenRequestDTO;
-import br.com.petshop.auth.controllers.dto.TokenResponseDTO;
+import br.com.petshop.auth.model.dto.CreateAuthenticationRequestDTO;
+import br.com.petshop.auth.model.dto.TokenRequestDTO;
+import br.com.petshop.auth.model.dto.TokenResponseDTO;
 import br.com.petshop.auth.service.CreateAuthenticationService;
 import br.com.petshop.auth.service.DeleteAuthenticationService;
 import br.com.petshop.auth.service.TokenService;
@@ -27,7 +27,7 @@ public class AuthenticationControllerV1 {
 
     private final DeleteAuthenticationService deleteAuthenticationService;
 
-    @PostMapping("/create")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Create the authentication")
     public ResponseEntity<Void> create(@RequestBody CreateAuthenticationRequestDTO dto) {
@@ -40,9 +40,9 @@ public class AuthenticationControllerV1 {
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("{enrollment}")
+    @DeleteMapping("/{enrollment}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    @Operation
+    @Operation(summary = "Remove authentication")
     public ResponseEntity<Void> delete(@PathVariable String enrollment) {
         return ResponseEntity.ok().build();
     }

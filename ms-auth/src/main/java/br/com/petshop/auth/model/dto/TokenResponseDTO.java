@@ -1,4 +1,4 @@
-package br.com.petshop.auth.controllers.dto;
+package br.com.petshop.auth.model.dto;
 
 import java.time.LocalDateTime;
 
