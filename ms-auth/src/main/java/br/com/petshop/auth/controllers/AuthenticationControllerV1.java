@@ -23,9 +23,9 @@ public class AuthenticationControllerV1 {
 
     private final TokenService tokenService;
 
-    private final CreateAuthenticationService createAuthenticationService;
+    private final CreateAuthenticationService createService;
 
-    private final DeleteAuthenticationService deleteAuthenticationService;
+    private final DeleteAuthenticationService deleteService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)

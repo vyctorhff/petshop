@@ -30,4 +30,6 @@ public class TokenService {
         var userPassword = new UsernamePasswordAuthenticationToken(requestDTO.enrollment(), requestDTO.password());
         return this.authenticationManager.authenticate(userPassword);
     }
+
+    
 }
