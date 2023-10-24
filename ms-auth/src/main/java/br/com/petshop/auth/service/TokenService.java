@@ -1,5 +1,6 @@
 package br.com.petshop.auth.service;
 
+import br.com.petshop.auth.model.User;
 import br.com.petshop.auth.model.dto.TokenRequestDTO;
 import br.com.petshop.auth.model.dto.TokenResponseDTO;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,7 @@ public class TokenService {
 
     public TokenResponseDTO login(TokenRequestDTO requestDTO) {
         var auth = this.getAuthetication(requestDTO);
+        var user = (User) auth.getDetails();
 
         // TODO: continue
         var token = "";
