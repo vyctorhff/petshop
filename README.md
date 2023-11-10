@@ -4,7 +4,7 @@
 ## 1 Object
 
 Create a backend for a petshop whos wants to sell products and adopt pets.
-The main go is to practie: nodejs, typescript, aws bucket, activeMQ(in the future gRPC), Elastic Search in microservices architecture.
+The main go is to practie: java, spring, deno, typescript, aws bucket, activeMQ, gRPC.
 
 
 ## 2 Resume
@@ -12,6 +12,15 @@ The main go is to practie: nodejs, typescript, aws bucket, activeMQ(in the futur
 The project will has two main gols:
 - Store: sell products
 - Adoption: control the flow of adoption a pet
+
+
+# Next Steps
+
+- Change for java implementation(in progress)
+- Gateway: config
+- Gateway: add uc for create user with auth
+- ms-user: add basic libs
+- ms-user: add controllers
 
 
 ## 3 Store
@@ -65,10 +74,10 @@ The project will has two main gols:
 - POST to ms-adopt
 - ms-adopt POST to ms-storage with de animals photos
 - ms-adopt POST to ms-adopt-process to start the process
-- ms-adopt-process return the process id for that animal 
+- ms-adopt-process return the process id for that animal
 
 
-#### 4.4. Reopen concluded adoption process 
+#### 4.4. Reopen concluded adoption process
 - ms-adopt GET to ms-adopt-animal
 - ms-adopt PATCH to ms-adopt-process passing the id animal
 - ms-adopt-process check if the animal has a previous process
@@ -89,7 +98,7 @@ The project will has two main gols:
 - valid if the user exists
 - return the user id
 
-#### 4.4. Search animal 
+#### 4.4. Search animal
 - GET to ms-adopt
 - ms-adopt GET to ms-adopt-animal
 - ms-adopt-animal paginate the results in 50 rows
@@ -111,7 +120,7 @@ The project will has two main gols:
 
 #### 4.4. Veterinary analysies the animal
 - POST to ms-adopt
-- ms-adopt POST to ms-adopt-process 
+- ms-adopt POST to ms-adopt-process
 - passing the veterinary text
 - check if is the correct step
 - update the step
@@ -199,13 +208,4 @@ The project will has two main gols:
 #### 5.1.4 Search perfils
 - Get to ms-user
 - Return a list with perfils
-
-
-# Next Steps
-
-- Change for java implementation(in progress)
-- Gateway: config
-- Gateway: add uc for create user with auth
-- ms-user: add basic libs
-- ms-user: add controllers
 
