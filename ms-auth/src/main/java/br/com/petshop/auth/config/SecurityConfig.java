@@ -19,6 +19,7 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain security(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
+            .csrf(csrf -> csrf.disable())
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(registry -> {
                 registry.anyRequest().authenticated();
