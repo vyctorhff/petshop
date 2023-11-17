@@ -47,24 +47,12 @@ services:
 volumes:
   petshop-storage-redis:
     driver: local
-    driver_opts:
-      type: 'none'
-      o: 'bind'
-      device: "c:/temp/petshop/storage-redis"
 
   petshop-storage-user:
     driver: local
-    driver_opts:
-      type: 'none'
-      o: 'bind'
-      device: "c:/temp/petshop/storage-user"
 
   petshop-storage-auth:
     driver: local
-    driver_opts:
-      type: 'none'
-      o: 'bind'
-      device: "c:/temp/petshop/storage-auth"
 
 networks:
   app-net:
