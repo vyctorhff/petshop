@@ -22,10 +22,10 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable())
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(registry -> {
-                registry.anyRequest().authenticated();
-
                 registry.requestMatchers(HttpMethod.POST, "/auth/v1").permitAll();
                 registry.requestMatchers(HttpMethod.GET, "/auth/v1").permitAll();
+
+                registry.anyRequest().authenticated();
             })
             .build();
     }
