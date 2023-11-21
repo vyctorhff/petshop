@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AuthenticatioService implements UserDetailsService {
 
-    private final UserAuthenticationRepository repository;
+    private final UserRepository repository;
 
     @Override
     public UserDetails loadUserByUsername(String enrollment) throws UsernameNotFoundException {

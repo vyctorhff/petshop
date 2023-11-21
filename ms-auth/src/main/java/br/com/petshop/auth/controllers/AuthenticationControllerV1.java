@@ -31,6 +31,7 @@ public class AuthenticationControllerV1 {
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Create the authentication")
     public ResponseEntity<Void> create(@RequestBody CreateAuthenticationRequestDTO dto) {
+        this.createService.create(dto);
         return ResponseEntity.ok().build();
     }
 
