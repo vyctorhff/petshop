@@ -3,9 +3,11 @@ package br.com.petshop.auth.infra.security;
 import br.com.petshop.auth.model.User;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.List;
 
 @Data
 public class UserAuthentication implements UserDetails {
@@ -18,7 +20,16 @@ public class UserAuthentication implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        if (user.getEnrollment().equals("admin")) {
+            return List.of(
+                new SimpleGrantedAuthority("admin")
+            );
+        }
+
+        return List.of(
+            new SimpleGrantedAuthority("user"),
+            new SimpleGrantedAuthority("employee")
+        );
     }
 
     @Override
