@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/token")
+@RequestMapping("/token/v1")
 @RequiredArgsConstructor
 @Slf4j
 @Tag(name = "Endpoint for token")
@@ -26,12 +26,14 @@ public class TokenControllerV1 {
     @GetMapping
     @Operation(summary = "Return token for authenticated user")
     public ResponseEntity<TokenResponseDTO> getToken(@RequestBody TokenRequestDTO dto) {
+        tokenService.getAuthetication(dto);
         return ResponseEntity.ok().build();
     }
 
     @PatchMapping
     @Operation(summary = "Refresh token")
     public ResponseEntity<TokenResponseDTO> refresh(@RequestBody TokenRequestDTO dto) {
+        tokenService.refresh();
         return ResponseEntity.ok().build();
     }
 }
