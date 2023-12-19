@@ -4,6 +4,7 @@ import br.com.petshop.auth.model.User;
 import br.com.petshop.auth.model.dto.TokenRequestDTO;
 import br.com.petshop.auth.model.dto.TokenResponseDTO;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class TokenService {
 
     private final AuthenticationManager authenticationManager;
@@ -27,6 +29,8 @@ public class TokenService {
 
         return new TokenResponseDTO(LocalDateTime.now(), token, refreshToken);
     }
+
+    public void refresh() {}
 
     public Authentication getAuthetication(TokenRequestDTO requestDTO) {
         var userPassword = new UsernamePasswordAuthenticationToken(requestDTO.enrollment(), requestDTO.password());
