@@ -6,7 +6,7 @@ import jakarta.persistence.ManyToMany;
 
 import java.util.List;
 
-@Entity(name = "tb_rule")
+@Entity(name = "tb_role")
 public class Role {
 
     @Id
