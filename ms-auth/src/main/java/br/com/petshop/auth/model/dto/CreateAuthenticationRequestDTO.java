@@ -7,7 +7,7 @@ import java.util.List;
 public record CreateAuthenticationRequestDTO(
     String enrollment,
     String password,
-    List<String> rules
+    List<String> roles
 ) {
 
     public User toEntity() {

@@ -43,7 +43,7 @@ public class AuthenticationControllerV1 {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/login")
+    @GetMapping
     @Operation(summary = "Do authentication for a user")
     public ResponseEntity<Void> login(@RequestBody LoginRequestDTO dto) {
         var user = new UsernamePasswordAuthenticationToken(dto.enrollment(), dto.password());
