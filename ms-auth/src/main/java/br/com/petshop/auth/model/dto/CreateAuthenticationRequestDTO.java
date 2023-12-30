@@ -1,6 +1,7 @@
 package br.com.petshop.auth.model.dto;
 
 import br.com.petshop.auth.model.User;
+import org.apache.commons.lang3.NotImplementedException;
 
 import java.util.List;
 
@@ -11,6 +12,6 @@ public record CreateAuthenticationRequestDTO(
 ) {
 
     public User toEntity() {
-        return null;
+        throw new NotImplementedException("not implemented");
     }
 }
