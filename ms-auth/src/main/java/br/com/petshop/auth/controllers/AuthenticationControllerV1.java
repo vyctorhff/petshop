@@ -53,10 +53,9 @@ public class AuthenticationControllerV1 {
     }
 
     @DeleteMapping("/{enrollment}")
-    @ResponseStatus(HttpStatus.ACCEPTED)
     @Operation(summary = "Remove authentication")
     public ResponseEntity<Void> delete(@PathVariable String enrollment) {
         this.deleteService.process(enrollment);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.accepted().build();
     }
 }
