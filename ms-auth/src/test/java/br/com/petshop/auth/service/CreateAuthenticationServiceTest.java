@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -30,7 +31,9 @@ class CreateAuthenticationServiceTest {
 
     @Test
     void shouldCreateUserSuccessfully() {
-        var dto = new CreateAuthenticationRequestDTO();
-        sut.create();
+        var dto = helper.createAuthenticationRequestValid();
+        sut.create(dto);
+
+        Mockito.verify(userRepository).save(Mockito.any());
     }
 }

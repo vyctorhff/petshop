@@ -9,7 +9,13 @@ import java.util.List;
 public class UserHelper {
 
     public CreateAuthenticationRequestDTO createAuthenticationRequestValid() {
-
+        var user = createUserValid();
+        var dto = new CreateAuthenticationRequestDTO(
+            user.getEnrollment(),
+            user.getPass(),
+            List.of("user")
+        );
+        return dto;
     }
 
     public User createUserValid() {
@@ -25,15 +31,15 @@ public class UserHelper {
         return List.of(
             Role.builder()
                 .id(123)
-                .name("")
+                .name("user")
                 .build(),
             Role.builder()
                 .id(456)
-                .name("")
+                .name("employee")
                 .build(),
             Role.builder()
                 .id(678)
-                .name("")
+                .name("admin")
                 .build()
         );
     }
