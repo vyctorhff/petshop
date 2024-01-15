@@ -8,6 +8,16 @@ import java.util.List;
 
 public class UserHelper {
 
+    public static final String ENROLLMENT = "1245";
+
+    public static final String PASS = "1asf123av";
+
+    private RoleHelper roleHelper;
+
+    public UserHelper() {
+        this.roleHelper = new RoleHelper();
+    }
+
     public CreateAuthenticationRequestDTO createAuthenticationRequestValid() {
         var user = createUserValid();
         var dto = new CreateAuthenticationRequestDTO(
@@ -28,19 +38,6 @@ public class UserHelper {
     }
 
     public List<Role> createValidRoles() {
-        return List.of(
-            Role.builder()
-                .id(123)
-                .name("user")
-                .build(),
-            Role.builder()
-                .id(456)
-                .name("employee")
-                .build(),
-            Role.builder()
-                .id(678)
-                .name("admin")
-                .build()
-        );
+        return this.roleHelper.createValidRoles();
     }
 }
