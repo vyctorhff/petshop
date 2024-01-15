@@ -14,8 +14,8 @@ public record CreateAuthenticationRequestDTO(
 ) {
 
     public User toEntity() {
-
         List<Role> rolesEntity = new ArrayList<>();
+
         if (rolesEntity != null) {
             roles.forEach(roleStr -> {
                 var role = Role.builder()
@@ -26,14 +26,11 @@ public record CreateAuthenticationRequestDTO(
             });
         }
 
-        var user = User
+        return User
             .builder()
             .enrollment(enrollment)
             .pass(password)
             .roles(rolesEntity)
             .build();
-
-
-        throw new NotImplementedException("not implemented");
     }
 }
