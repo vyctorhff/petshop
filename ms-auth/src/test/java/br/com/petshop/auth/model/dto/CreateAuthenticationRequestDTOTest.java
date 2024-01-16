@@ -2,11 +2,11 @@ package br.com.petshop.auth.model.dto;
 
 import br.com.petshop.auth.helper.UserHelper;
 import br.com.petshop.auth.model.User;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class CreateAuthenticationRequestDTOTest {
 
@@ -20,7 +20,6 @@ class CreateAuthenticationRequestDTOTest {
     @Test
     void shouldToEntitySuccessfully() {
         CreateAuthenticationRequestDTO request = this.helper.createAuthenticationRequestValid();
-
         User entity = request.toEntity();
 
         assertNotNull(entity);
@@ -31,6 +30,15 @@ class CreateAuthenticationRequestDTOTest {
 
     @Test
     void shouldToEntityWithNoRoles() {
-        Assertions.fail();
+        CreateAuthenticationRequestDTO request = this.helper.createAuthenticationWithoutRoles();
+        User entity = request.toEntity();
+
+        assertNotNull(entity);
+
+        assertEquals(request.enrollment(), entity.getEnrollment());
+        assertEquals(request.password(), entity.getPass());
+
+        assertNotNull(entity.getRoles());
+        assertEquals(0, entity.getRoles().size());
     }
 }

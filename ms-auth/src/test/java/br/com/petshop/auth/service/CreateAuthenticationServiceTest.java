@@ -6,12 +6,21 @@ import br.com.petshop.auth.model.dto.CreateAuthenticationRequestDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.web.server.ResponseStatusException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.List;
+import java.util.stream.Stream;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
 
 @ExtendWith({MockitoExtension.class})
 class CreateAuthenticationServiceTest {
@@ -32,8 +41,51 @@ class CreateAuthenticationServiceTest {
     @Test
     void shouldCreateUserSuccessfully() {
         var dto = helper.createAuthenticationRequestValid();
+
         sut.create(dto);
 
-        Mockito.verify(userRepository).save(Mockito.any());
+        verify(userRepository).existsUserByEnrollment(dto.enrollment());
+        verify(userRepository).save(any());
+    }
+
+    @ParameterizedTest
+    @MethodSource("sourceCreateWithError")
+    void shouldCreateWithError(CreateAuthenticationRequestDTO dto) {
+        assertThrows(ResponseStatusException.class, () -> {
+            sut.create(dto);
+        });
+    }
+
+    private static Stream<Arguments> sourceCreateWithError() {
+        var enrollment = UserHelper.ENROLLMENT;
+        var pass = UserHelper.PASS;
+
+        // REFACT: use helper
+        var dtoWithNullRoles =
+            new CreateAuthenticationRequestDTO(enrollment, pass, null);
+
+        var dtoWithEmptyRoles =
+            new CreateAuthenticationRequestDTO(enrollment, pass, List.of());
+
+        var dtoWithRoleAdmin =
+            new CreateAuthenticationRequestDTO(enrollment, pass, List.of("admin"));
+
+        return Stream.of(
+            Arguments.of(dtoWithNullRoles),
+            Arguments.of(dtoWithEmptyRoles),
+            Arguments.of(dtoWithRoleAdmin)
+        );
+    }
+
+    @Test
+    void shouldCreateThatAlreadExistEnrollement() {
+        var dto = helper.createAuthenticationRequestValid();
+
+        Mockito.when(userRepository.existsUserByEnrollment(dto.enrollment()))
+                .thenReturn(true);
+
+        assertThrows(ResponseStatusException.class, () -> {
+            sut.create(dto);
+        });
     }
 }

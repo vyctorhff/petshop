@@ -16,7 +16,7 @@ public record CreateAuthenticationRequestDTO(
     public User toEntity() {
         List<Role> rolesEntity = new ArrayList<>();
 
-        if (rolesEntity != null) {
+        if (roles != null) {
             roles.forEach(roleStr -> {
                 var role = Role.builder()
                     .name(roleStr)
