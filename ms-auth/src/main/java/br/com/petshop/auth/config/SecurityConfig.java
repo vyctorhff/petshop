@@ -1,5 +1,7 @@
 package br.com.petshop.auth.config;
 
+import br.com.petshop.auth.infra.security.TokenFilter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -11,10 +13,14 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+
+    @Autowired
+    private TokenFilter tokenFilter;
 
     @Bean
     SecurityFilterChain security(HttpSecurity httpSecurity) throws Exception {
@@ -28,6 +34,7 @@ public class SecurityConfig {
 
                 registry.anyRequest().authenticated();
             })
+            .addFilterBefore(tokenFilter, UsernamePasswordAuthenticationFilter.class)
             .build();
     }
 
