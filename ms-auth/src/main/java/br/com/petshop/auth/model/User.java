@@ -5,14 +5,18 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.List;
 
 @Data
 @Entity(name = "tb_user")
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class User {
 
@@ -22,6 +26,8 @@ public class User {
     private String enrollment;
 
     private String pass;
+
+    private String name;
 
     @ManyToMany
     @JoinTable(
@@ -37,6 +43,14 @@ public class User {
 
     public boolean hasAdminRole() {
         return hasRoles() && roles.stream()
-            .anyMatch(value -> Roles.ADMIN.toString().equals(value.getName().toUpperCase()));
+            .anyMatch(value -> Roles.ADMIN.getName().equals(value.getName()));
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+            .append("id", id)
+            .append("name", name)
+            .build();
     }
 }

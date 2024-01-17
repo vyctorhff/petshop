@@ -19,13 +19,35 @@ public class UserHelper {
     }
 
     public CreateAuthenticationRequestDTO createAuthenticationRequestValid() {
-        var user = createUserValid();
-        var dto = new CreateAuthenticationRequestDTO(
-            user.getEnrollment(),
-            user.getPass(),
+        return new CreateAuthenticationRequestDTO(
+            ENROLLMENT,
+            PASS,
             List.of("user")
         );
-        return dto;
+    }
+
+    public CreateAuthenticationRequestDTO createAuthenticationWithoutRoles() {
+        return new CreateAuthenticationRequestDTO(
+            ENROLLMENT,
+            PASS,
+            null
+        );
+    }
+
+    public CreateAuthenticationRequestDTO createAuthenticationWithEmptyRoles() {
+        return new CreateAuthenticationRequestDTO(
+            ENROLLMENT,
+            PASS,
+            List.of()
+        );
+    }
+
+    public CreateAuthenticationRequestDTO createAuthenticationWithAdminRoles() {
+        return new CreateAuthenticationRequestDTO(
+            ENROLLMENT,
+            PASS,
+            List.of("admin")
+        );
     }
 
     public User createUserValid() {
