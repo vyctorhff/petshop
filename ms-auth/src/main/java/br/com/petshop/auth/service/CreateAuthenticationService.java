@@ -6,8 +6,6 @@ import br.com.petshop.auth.model.dto.CreateAuthenticationRequestDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -18,16 +16,16 @@ public class CreateAuthenticationService {
 
     private final UserRepository repository;
 
-    public void create(CreateAuthenticationRequestDTO dto) {
+    public User create(CreateAuthenticationRequestDTO dto) {
         log.info("Creating authentication");
 
         User entity = dto.toEntity();
 
-        if (repository.existsEnrollemnt(entity.getEnrollment())) {
+        if (repository.existsUserByEnrollment(entity.getEnrollment())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Enrollment already exists");
         }
 
-        if (entity.hasRoles()) {
+        if (!entity.hasRoles()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "missing roles");
         }
 
@@ -35,6 +33,6 @@ public class CreateAuthenticationService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "it cannot has admin role");
         }
 
-        repository.save(dto.toEntity());
+        return repository.save(dto.toEntity());
     }
 }

@@ -15,7 +15,6 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -57,18 +56,11 @@ class CreateAuthenticationServiceTest {
     }
 
     private static Stream<Arguments> sourceCreateWithError() {
-        var enrollment = UserHelper.ENROLLMENT;
-        var pass = UserHelper.PASS;
+        var helper = new UserHelper();
 
-        // REFACT: use helper
-        var dtoWithNullRoles =
-            new CreateAuthenticationRequestDTO(enrollment, pass, null);
-
-        var dtoWithEmptyRoles =
-            new CreateAuthenticationRequestDTO(enrollment, pass, List.of());
-
-        var dtoWithRoleAdmin =
-            new CreateAuthenticationRequestDTO(enrollment, pass, List.of("admin"));
+        var dtoWithNullRoles = helper.createAuthenticationWithoutRoles();
+        var dtoWithEmptyRoles = helper.createAuthenticationWithEmptyRoles();
+        var dtoWithRoleAdmin = helper.createAuthenticationWithAdminRoles();
 
         return Stream.of(
             Arguments.of(dtoWithNullRoles),
