@@ -43,7 +43,7 @@ public class User {
 
     public boolean hasAdminRole() {
         return hasRoles() && roles.stream()
-            .anyMatch(value -> Roles.ADMIN.getName().equals(value.getName()));
+            .anyMatch(role -> Roles.hasAdminName(role.getName()));
     }
 
     @Override
