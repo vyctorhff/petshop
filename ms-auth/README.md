@@ -2,18 +2,15 @@
 
 ## Objective
 
-## Dependencies
+## Tecnologies
 
 - Postgresql
 - JWT
 - Spring Boot
 - Spring Data
 
-## Tech UCs
-
 ## Swagger
-http://localhost:8085/cc-authentication-service/swagger-ui/index.html
-
+http://localhost:8085/swagger-ui/index.html
 
 ## Features
 
@@ -26,10 +23,7 @@ http://localhost:8085/cc-authentication-service/swagger-ui/index.html
 
 # Next Steps
 
-- Add jwt libs and configs
-- Create service for jwt
-- Valid request in dto's with annotaion
-- Insert authentication on database
-- Create service for generate jwt token
-- Create service for delete 
+- Refact login user auth
+- Test create user auth
+- Test service for delete 
 - Fix hikari pool configuration
