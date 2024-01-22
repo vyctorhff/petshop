@@ -26,7 +26,8 @@ public class TokenControllerV1 {
     @GetMapping
     @Operation(summary = "Return token for authenticated user")
     public ResponseEntity<TokenResponseDTO> getToken(@RequestBody TokenRequestDTO dto) {
-        tokenService.getAuthetication(dto);
+        // REFACT: check if this route is necessarily
+//        tokenService.getAuthetication(dto);
         return ResponseEntity.ok().build();
     }
 
