@@ -1,5 +1,6 @@
 package br.com.petshop.auth.infra.security;
 
+import br.com.petshop.auth.model.Roles;
 import br.com.petshop.auth.model.User;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
@@ -20,7 +21,7 @@ public class UserAuthentication implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if (user.getEnrollment().equals("admin")) {
+        if (Roles.ADMIN.getName().equals(user.getName())) {
             return List.of(
                 new SimpleGrantedAuthority("admin")
             );
@@ -44,12 +45,12 @@ public class UserAuthentication implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
