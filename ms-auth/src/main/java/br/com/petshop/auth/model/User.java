@@ -23,11 +23,13 @@ public class User {
     @Id
     private Integer id;
 
-    private String enrollment;
+    private Integer enrollment;
 
     private String pass;
 
     private String name;
+
+    private String alias;
 
     @ManyToMany
     @JoinTable(
@@ -44,6 +46,10 @@ public class User {
     public boolean hasAdminRole() {
         return hasRoles() && roles.stream()
             .anyMatch(role -> Roles.hasAdminName(role.getName()));
+    }
+
+    public String getEnrollmentAsString() {
+        return String.valueOf(this.enrollment);
     }
 
     @Override

@@ -10,6 +10,10 @@ public class UserHelper {
 
     public static final String ENROLLMENT = "1245";
 
+    public static final String NAME = "Name name";
+
+    public static final String ALIAS = "alias";
+
     public static final String PASS = "1asf123av";
 
     private RoleHelper roleHelper;
@@ -20,7 +24,8 @@ public class UserHelper {
 
     public CreateAuthenticationRequestDTO createAuthenticationRequestValid() {
         return new CreateAuthenticationRequestDTO(
-            ENROLLMENT,
+            NAME,
+            ALIAS,
             PASS,
             List.of("user")
         );
@@ -28,7 +33,8 @@ public class UserHelper {
 
     public CreateAuthenticationRequestDTO createAuthenticationWithoutRoles() {
         return new CreateAuthenticationRequestDTO(
-            ENROLLMENT,
+            NAME,
+            ALIAS,
             PASS,
             null
         );
@@ -36,7 +42,8 @@ public class UserHelper {
 
     public CreateAuthenticationRequestDTO createAuthenticationWithEmptyRoles() {
         return new CreateAuthenticationRequestDTO(
-            ENROLLMENT,
+            NAME,
+            ALIAS,
             PASS,
             List.of()
         );
@@ -44,7 +51,17 @@ public class UserHelper {
 
     public CreateAuthenticationRequestDTO createAuthenticationWithAdminRoles() {
         return new CreateAuthenticationRequestDTO(
-            ENROLLMENT,
+            NAME,
+            ALIAS,
+            PASS,
+            List.of("admin")
+        );
+    }
+
+    public CreateAuthenticationRequestDTO createAuthenticationWithEnrollment() {
+        return new CreateAuthenticationRequestDTO(
+            NAME,
+            ALIAS,
             PASS,
             List.of("admin")
         );
@@ -53,7 +70,6 @@ public class UserHelper {
     public User createUserValid() {
         return User.builder()
             .id(123)
-            .enrollment("1234")
             .pass("asd123")
             .roles(createValidRoles())
             .build();

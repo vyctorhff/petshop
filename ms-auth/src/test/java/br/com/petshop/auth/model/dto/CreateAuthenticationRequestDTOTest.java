@@ -23,7 +23,9 @@ class CreateAuthenticationRequestDTOTest {
         User entity = request.toEntity();
 
         assertNotNull(entity);
-        assertEquals(request.enrollment(), entity.getEnrollment());
+
+        assertEquals(request.name(), entity.getName());
+        assertEquals(request.alias(), entity.getAlias());
         assertEquals(request.password(), entity.getPass());
         assertEquals(request.roles().size(), entity.getRoles().size());
     }
@@ -35,7 +37,8 @@ class CreateAuthenticationRequestDTOTest {
 
         assertNotNull(entity);
 
-        assertEquals(request.enrollment(), entity.getEnrollment());
+        assertEquals(request.name(), entity.getName());
+        assertEquals(request.alias(), entity.getAlias());
         assertEquals(request.password(), entity.getPass());
 
         assertNotNull(entity.getRoles());

@@ -42,7 +42,7 @@ public class TokenService {
         try {
             return JWT.create()
                 .withIssuer(getIssuer())
-                .withSubject(user.getEnrollment())
+                .withSubject(user.getEnrollmentAsString())
                 .withExpiresAt(getExpire())
                 .sign(getAlgorithm());
         } catch (JWTCreationException e) {
