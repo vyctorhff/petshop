@@ -40,7 +40,7 @@ public class UserAuthentication implements UserDetails {
 
     @Override
     public String getUsername() {
-        return user.getEnrollment();
+        return String.valueOf(user.getEnrollment());
     }
 
     @Override

@@ -7,7 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepository extends JpaRepository<User, String> {
 
-    User findByEnrollment(String enrollment);
-
-    boolean existsUserByEnrollment(String enrollment);
+    User findByEnrollment(Integer enrollment);
 }

@@ -13,7 +13,7 @@ public class DeleteAuthenticationService {
 
     private final UserRepository repository;
 
-    public void process(String enrollment) {
+    public void process(Integer enrollment) {
         User user = repository.findByEnrollment(enrollment);
 
         if (user == null) return;
