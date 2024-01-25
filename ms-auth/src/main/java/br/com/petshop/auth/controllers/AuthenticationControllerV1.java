@@ -1,9 +1,15 @@
 package br.com.petshop.auth.controllers;
 
+import br.com.petshop.auth.infra.security.UserRepository;
+import br.com.petshop.auth.model.User;
 import br.com.petshop.auth.model.dto.CreateAuthenticationRequestDTO;
 import br.com.petshop.auth.model.dto.LoginRequestDTO;
+import br.com.petshop.auth.model.dto.TokenResponseDTO;
+import br.com.petshop.auth.model.dto.UserResponseDTO;
 import br.com.petshop.auth.service.CreateAuthenticationService;
 import br.com.petshop.auth.service.DeleteAuthenticationService;
+import br.com.petshop.auth.service.LoginService;
+import br.com.petshop.auth.service.TokenService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -11,8 +17,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,28 +37,41 @@ public class AuthenticationControllerV1 {
 
     private final DeleteAuthenticationService deleteService;
 
-    private final AuthenticationManager authenticationManager;
+    private final LoginService loginService;
+
+    private final TokenService tokenService;
+
+    private final UserRepository userRepository;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Create the authentication")
-    public ResponseEntity<Void> create(@RequestBody CreateAuthenticationRequestDTO dto) {
-        this.createService.create(dto);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<TokenResponseDTO> create(@RequestBody CreateAuthenticationRequestDTO dto) {
+        var user = this.createService.create(dto);
+        var token = tokenService.generate(user);
+
+        var tokenDTO = TokenResponseDTO.createWithNow(token);
+        return ResponseEntity.ok(tokenDTO);
     }
 
     @GetMapping
     @Operation(summary = "Do authentication for a user")
-    public ResponseEntity<Void> login(@RequestBody LoginRequestDTO dto) {
-        var user = new UsernamePasswordAuthenticationToken(dto.enrollment(), dto.password());
-        Authentication authenticate = this.authenticationManager.authenticate(user);
+    public ResponseEntity<TokenResponseDTO> login(@RequestBody LoginRequestDTO dto) {
+        var tokenDTO = loginService.login(dto);
+        return ResponseEntity.ok(tokenDTO);
+    }
 
-        return ResponseEntity.ok().build();
+    @GetMapping("/{enrollment}")
+    @Operation(summary = "Find user by enrollment")
+    public ResponseEntity<UserResponseDTO> findUser(@PathVariable Integer enrollment) {
+        User user = userRepository.findByEnrollment(enrollment);
+        return ResponseEntity.ok(UserResponseDTO.fromEntity(user));
     }
 
     @DeleteMapping("/{enrollment}")
     @Operation(summary = "Remove authentication")
-    public ResponseEntity<Void> delete(@PathVariable String enrollment) {
+    public ResponseEntity<Void> delete(@PathVariable Integer enrollment) {
+        // TEST: do integration test
         this.deleteService.process(enrollment);
         return ResponseEntity.accepted().build();
     }

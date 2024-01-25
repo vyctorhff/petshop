@@ -3,6 +3,7 @@ package br.com.petshop.auth.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -21,6 +22,10 @@ public class Role {
 
     @ManyToMany(mappedBy = "roles")
     private List<User> users;
+
+    public Role(String name) {
+        this.name = name;
+    }
 
     @Override
     public String toString() {

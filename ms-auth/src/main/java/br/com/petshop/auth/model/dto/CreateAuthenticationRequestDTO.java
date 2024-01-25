@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public record CreateAuthenticationRequestDTO(
-    String enrollment,
+    String name,
+    String alias,
     String password,
     List<String> roles
 ) {
@@ -16,18 +17,15 @@ public record CreateAuthenticationRequestDTO(
         List<Role> rolesEntity = new ArrayList<>();
 
         if (roles != null) {
-            roles.forEach(roleStr -> {
-                var role = Role.builder()
-                    .name(roleStr)
-                    .build();
-
-                rolesEntity.add(role);
-            });
+            rolesEntity = roles.stream()
+                .map(value -> new Role(value))
+                .toList();
         }
 
         return User
             .builder()
-            .enrollment(enrollment)
+            .name(name)
+            .alias(alias)
             .pass(password)
             .roles(rolesEntity)
             .build();

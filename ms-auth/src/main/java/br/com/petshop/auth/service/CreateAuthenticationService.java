@@ -1,5 +1,6 @@
 package br.com.petshop.auth.service;
 
+import br.com.petshop.auth.infra.security.EnrollmentNextValueRepository;
 import br.com.petshop.auth.infra.security.UserRepository;
 import br.com.petshop.auth.model.User;
 import br.com.petshop.auth.model.dto.CreateAuthenticationRequestDTO;
@@ -16,15 +17,19 @@ public class CreateAuthenticationService {
 
     private final UserRepository repository;
 
+    private final EnrollmentNextValueRepository enrollmentNextValueRepository;
+
     public User create(CreateAuthenticationRequestDTO dto) {
         log.info("Creating authentication");
 
         User entity = dto.toEntity();
+        entity.setEnrollment(enrollmentNextValueRepository.next());
 
-        if (repository.existsUserByEnrollment(entity.getEnrollment())) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Enrollment already exists");
-        }
+        validate(entity);
+        return repository.save(entity);
+    }
 
+    private static void validate(User entity) {
         if (!entity.hasRoles()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "missing roles");
         }
@@ -32,7 +37,5 @@ public class CreateAuthenticationService {
         if (entity.hasAdminRole()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "it cannot has admin role");
         }
-
-        return repository.save(dto.toEntity());
     }
 }
