@@ -67,6 +67,15 @@ public class UserHelper {
         );
     }
 
+    public CreateAuthenticationRequestDTO createAuthenticationWithRoleNotExists() {
+        return new CreateAuthenticationRequestDTO(
+            NAME,
+            ALIAS,
+            PASS,
+            List.of("role test")
+        );
+    }
+
     public User createUserValid() {
         return User.builder()
             .id(123)

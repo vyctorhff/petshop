@@ -1,11 +1,12 @@
 package br.com.petshop.auth.service;
 
+import br.com.petshop.auth.helper.RoleHelper;
 import br.com.petshop.auth.helper.UserHelper;
-import br.com.petshop.auth.infra.security.EnrollmentNextValueRepository;
-import br.com.petshop.auth.infra.security.UserRepository;
+import br.com.petshop.auth.infra.EnrollmentNextValueRepository;
+import br.com.petshop.auth.infra.RoleRepository;
+import br.com.petshop.auth.infra.UserRepository;
 import br.com.petshop.auth.model.User;
 import br.com.petshop.auth.model.dto.CreateAuthenticationRequestDTO;
-import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,13 +21,12 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -40,6 +40,9 @@ class CreateAuthenticationServiceTest {
     private UserRepository userRepository;
 
     @Mock
+    private RoleRepository roleRepository;
+
+    @Mock
     private EnrollmentNextValueRepository enrollmentNextValueRepository;
 
     @Captor
@@ -47,9 +50,12 @@ class CreateAuthenticationServiceTest {
 
     private UserHelper helper;
 
+    private RoleHelper roleHelper;
+
     @BeforeEach
     void setUp() {
         this.helper = new UserHelper();
+        this.roleHelper = new RoleHelper();
     }
 
     @Test
@@ -57,17 +63,27 @@ class CreateAuthenticationServiceTest {
         when(enrollmentNextValueRepository.next())
             .thenReturn(1);
 
+        when(roleRepository.findAll())
+            .thenReturn(roleHelper.createValidRoles());
+
         var dto = helper.createAuthenticationRequestValid();
 
         sut.create(dto);
 
-        verify(enrollmentNextValueRepository).next();
+        verify(enrollmentNextValueRepository, Mockito.only()).next();
+        verify(roleRepository, Mockito.only()).findAll();
         verify(userRepository).save(userArgumentCaptor.capture());
 
         var user = userArgumentCaptor.getValue();
 
         assertNotNull(user);
         assertEquals(1, user.getEnrollment());
+        assertNotNull(user.getCreatedAt());
+
+        user.getRoles().stream().forEach(role -> {
+            assertNotNull(role);
+            assertNotNull(role.getId());
+        });
     }
 
     @ParameterizedTest
@@ -90,5 +106,20 @@ class CreateAuthenticationServiceTest {
             Arguments.of(dtoWithRoleEnrollment),
             Arguments.of(dtoWithRoleAdmin)
         );
+    }
+
+    @Test
+    void shouldNotCreateWitRoleThatNotExists() {
+        when(enrollmentNextValueRepository.next())
+            .thenReturn(1);
+
+        when(roleRepository.findAll())
+            .thenReturn(roleHelper.createValidRoles());
+
+        var dto = helper.createAuthenticationWithRoleNotExists();
+
+        assertThrows(ResponseStatusException.class, () -> {
+            sut.create(dto);
+        });
     }
 }
