@@ -6,12 +6,20 @@ import jakarta.persistence.ManyToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity(name = "tb_role")
 public class Role {
 
@@ -33,5 +41,23 @@ public class Role {
             .append("id", id)
             .append("name", name)
             .build();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Role role) {
+            return new EqualsBuilder()
+                .append(this.name, role.getName())
+                .isEquals();
+        }
+
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder()
+            .append(this.name)
+            .hashCode();
     }
 }

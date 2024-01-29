@@ -11,6 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -30,6 +31,8 @@ public class User {
     private String name;
 
     private String alias;
+
+    private LocalDateTime createdAt;
 
     @ManyToMany
     @JoinTable(
