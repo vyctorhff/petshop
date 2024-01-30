@@ -21,7 +21,6 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -80,7 +79,7 @@ class CreateAuthenticationServiceTest {
         assertEquals(1, user.getEnrollment());
         assertNotNull(user.getCreatedAt());
 
-        user.getRoles().stream().forEach(role -> {
+        user.getRoles().forEach(role -> {
             assertNotNull(role);
             assertNotNull(role.getId());
         });
@@ -118,8 +117,6 @@ class CreateAuthenticationServiceTest {
 
         var dto = helper.createAuthenticationWithRoleNotExists();
 
-        assertThrows(ResponseStatusException.class, () -> {
-            sut.create(dto);
-        });
+        assertThrows(ResponseStatusException.class, () -> sut.create(dto));
     }
 }
