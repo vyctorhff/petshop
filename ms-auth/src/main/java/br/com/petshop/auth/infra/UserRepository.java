@@ -1,4 +1,4 @@
-package br.com.petshop.auth.infra.security;
+package br.com.petshop.auth.infra;
 
 import br.com.petshop.auth.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;

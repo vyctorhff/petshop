@@ -1,4 +1,4 @@
-package br.com.petshop.auth.infra.security;
+package br.com.petshop.auth.infra;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
