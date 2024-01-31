@@ -23,7 +23,5 @@ http://localhost:8085/swagger-ui/index.html
 
 # Next Steps
 
-- Refact login user auth
-- Test create user auth
 - Test service for delete 
 - Fix hikari pool configuration
