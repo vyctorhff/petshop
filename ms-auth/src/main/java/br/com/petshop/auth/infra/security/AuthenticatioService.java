@@ -1,5 +1,6 @@
 package br.com.petshop.auth.infra.security;
 
+import br.com.petshop.auth.infra.UserRepository;
 import br.com.petshop.auth.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
