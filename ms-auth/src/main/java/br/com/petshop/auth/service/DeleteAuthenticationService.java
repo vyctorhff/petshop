@@ -16,6 +16,10 @@ public class DeleteAuthenticationService {
     private final UserRepository repository;
 
     public void process(Integer enrollment) {
+        if (enrollment == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+
         User user = repository.findByEnrollment(enrollment);
 
         if (user == null) {
