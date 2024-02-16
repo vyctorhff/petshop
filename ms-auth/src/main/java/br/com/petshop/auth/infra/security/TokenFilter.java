@@ -11,23 +11,41 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.Optional;
 
 @Component
 public class TokenFilter extends OncePerRequestFilter {
+
+    public static final String AUTH_BEARER = "Bearer ";
+    public static final String AUTHORIZATION = "Authorization";
 
     @Autowired
     private TokenService tokenService;
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        String token = request.getHeader("Authorization");
+    protected void doFilterInternal(HttpServletRequest request,
+                                    HttpServletResponse response,
+                                    FilterChain filterChain)
+        throws ServletException, IOException {
 
-        if (token != null) {
-            token.replace("Bearer ", StringUtils.EMPTY);
-            tokenService.validate(token);
-            // TODO: check on databaes the enrollment
+        var optToken = getTokenOnly(request);
+
+        if (optToken.isPresent()) {
+            var subject = tokenService.validate(optToken.get());
+            System.out.println("subject: " + subject);
         }
 
         filterChain.doFilter(request, response);
+    }
+
+    private Optional<String> getTokenOnly(HttpServletRequest request) {
+        var token = request.getHeader(AUTHORIZATION);
+
+        if (StringUtils.isBlank(token)) {
+            return Optional.empty();
+        }
+
+        var tokenOnly = token.trim().replace(AUTH_BEARER, StringUtils.EMPTY);
+        return Optional.of(tokenOnly);
     }
 }
