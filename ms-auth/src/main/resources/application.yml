@@ -7,9 +7,9 @@ spring:
       enabled: ALWAYS
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5433/petshop-ms-auth
-    username: dev
-    password: 123
+    url: ${DATA_BASE_URL:jdbc:postgresql://localhost:5433/petshop-ms-auth}
+    username: ${DATA_BASE_USER:dev}
+    password: ${DATA_BASE_PASS:123}
 #    hikari:
 #      connectionTimeout: 10000
 #      maximumPoolSize: 1
@@ -20,7 +20,5 @@ spring:
       ddl-auto: validate
 
 security:
-  user:
-    password: 123
   jwt:
     secret: AN_EXTREMALY_DIFFICULT_STRING_TO_BROKEN_FOR_A_NOT_OCCUPIED_PERSON
