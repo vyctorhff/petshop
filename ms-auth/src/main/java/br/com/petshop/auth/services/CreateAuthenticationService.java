@@ -1,4 +1,4 @@
-package br.com.petshop.auth.service;
+package br.com.petshop.auth.services;
 
 import br.com.petshop.auth.infra.EnrollmentNextValueRepository;
 import br.com.petshop.auth.infra.RoleRepository;

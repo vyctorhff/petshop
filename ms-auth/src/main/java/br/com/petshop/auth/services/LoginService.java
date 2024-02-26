@@ -1,4 +1,4 @@
-package br.com.petshop.auth.service;
+package br.com.petshop.auth.services;
 
 import br.com.petshop.auth.infra.security.UserAuthentication;
 import br.com.petshop.auth.model.dto.LoginRequestDTO;

@@ -1,6 +1,6 @@
 package br.com.petshop.auth.infra.security;
 
-import br.com.petshop.auth.service.TokenService;
+import br.com.petshop.auth.services.TokenService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

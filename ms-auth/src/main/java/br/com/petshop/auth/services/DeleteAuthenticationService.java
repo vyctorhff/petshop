@@ -1,4 +1,4 @@
-package br.com.petshop.auth.service;
+package br.com.petshop.auth.services;
 
 import br.com.petshop.auth.infra.UserRepository;
 import br.com.petshop.auth.model.User;

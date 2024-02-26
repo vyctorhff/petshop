@@ -2,7 +2,7 @@ package br.com.petshop.auth.controllers;
 
 import br.com.petshop.auth.model.dto.TokenRequestDTO;
 import br.com.petshop.auth.model.dto.TokenResponseDTO;
-import br.com.petshop.auth.service.TokenService;
+import br.com.petshop.auth.services.TokenService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;

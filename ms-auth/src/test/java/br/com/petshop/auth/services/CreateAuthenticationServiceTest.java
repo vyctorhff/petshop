@@ -1,4 +1,4 @@
-package br.com.petshop.auth.service;
+package br.com.petshop.auth.services;
 
 import br.com.petshop.auth.helper.RoleHelper;
 import br.com.petshop.auth.helper.UserHelper;
