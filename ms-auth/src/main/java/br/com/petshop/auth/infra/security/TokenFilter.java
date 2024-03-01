@@ -22,6 +22,9 @@ public class TokenFilter extends OncePerRequestFilter {
     @Autowired
     private TokenService tokenService;
 
+    @Autowired
+    private AuthenticatioService authenticatioService;
+
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
@@ -32,7 +35,11 @@ public class TokenFilter extends OncePerRequestFilter {
 
         if (optToken.isPresent()) {
             var subject = tokenService.validate(optToken.get());
-            System.out.println("subject: " + subject);
+
+//            UserDetails userDetails = authenticatioService.loadUserByUsername(subject);
+//            UsernamePasswordAuthenticationToken userAuth = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+
+            authenticatioService.setSpringUserAuth(subject);
         }
 
         filterChain.doFilter(request, response);
