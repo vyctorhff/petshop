@@ -3,7 +3,6 @@ package br.com.petshop.auth.controllers;
 import br.com.petshop.auth.infra.RoleRepository;
 import br.com.petshop.auth.services.TokenService;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
