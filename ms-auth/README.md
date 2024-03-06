@@ -25,3 +25,9 @@ http://localhost:8085/swagger-ui/index.html
 
 - Test service for delete 
 - Fix hikari pool configuration
+
+
+# Second Thought
+
+- Change stateless user context to statefull
+- Create a redis for cache user and minimize database queries
