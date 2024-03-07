@@ -5,7 +5,6 @@ import br.com.petshop.auth.model.dto.LoginRequestDTO;
 import br.com.petshop.auth.model.dto.TokenResponseDTO;
 import br.com.petshop.auth.services.CreateAuthenticationService;
 import br.com.petshop.auth.services.LoginService;
-import br.com.petshop.auth.services.TokenService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -28,16 +27,13 @@ public class AuthenticationControllerV1 {
 
     private final LoginService loginService;
 
-    private final TokenService tokenService;
-
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Create the authentication")
     public ResponseEntity<TokenResponseDTO> create(@RequestBody CreateAuthenticationRequestDTO dto) {
-        var user = this.createService.create(dto);
-        var token = tokenService.generate(user);
+        // REFACT: maybe move this rote to UserController??
 
-        var tokenDTO = TokenResponseDTO.createWithNow(token);
+        var tokenDTO = createService.create(dto);
         return ResponseEntity.ok(tokenDTO);
     }
 
