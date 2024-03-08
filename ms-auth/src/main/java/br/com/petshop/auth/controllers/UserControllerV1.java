@@ -3,6 +3,7 @@ package br.com.petshop.auth.controllers;
 import br.com.petshop.auth.infra.UserRepository;
 import br.com.petshop.auth.model.User;
 import br.com.petshop.auth.model.dto.CreateAuthenticationRequestDTO;
+import br.com.petshop.auth.model.dto.TokenResponseDTO;
 import br.com.petshop.auth.model.dto.UserResponseDTO;
 import br.com.petshop.auth.services.CreateAuthenticationService;
 import br.com.petshop.auth.services.DeleteAuthenticationService;
@@ -19,23 +20,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/user/v1")
 @RequiredArgsConstructor
 public class UserControllerV1 {
 
-    private final UserRepository userRepository;
-
     private final CreateAuthenticationService createService;
 
     private final DeleteAuthenticationService deleteService;
 
+    private final UserRepository userRepository;
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Create the authentication")
-    public ResponseEntity<Void> create(@RequestBody CreateAuthenticationRequestDTO dto) {
-        var user = this.createService.create(dto);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<TokenResponseDTO> create(@RequestBody CreateAuthenticationRequestDTO dto) {
+        var tokenDTO = createService.create(dto);
+        return ResponseEntity.ok(tokenDTO);
     }
 
     @GetMapping("/{enrollment}")
@@ -43,6 +46,17 @@ public class UserControllerV1 {
     public ResponseEntity<UserResponseDTO> findUser(@PathVariable Integer enrollment) {
         User user = userRepository.findByEnrollment(enrollment);
         return ResponseEntity.ok(UserResponseDTO.fromEntity(user));
+    }
+
+    @GetMapping("/list")
+    public ResponseEntity<List<UserResponseDTO>> getAll() {
+        List<User> users = userRepository.findAll();
+
+        List<UserResponseDTO> result = users.stream()
+            .map(UserResponseDTO::fromEntity)
+            .toList();
+
+        return ResponseEntity.ok(result);
     }
 
     @DeleteMapping("/{enrollment}")
