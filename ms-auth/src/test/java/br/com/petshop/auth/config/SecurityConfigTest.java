@@ -20,7 +20,7 @@ class SecurityConfigTest {
 
     @Test
     void shouldEncodeSuccessfully() {
-        String result = passwordEncoder.encode(PASSWORD_SIMPLE);
+        var result = passwordEncoder.encode(PASSWORD_SIMPLE);
 
         assertNotNull(result);
         assertFalse(StringUtils.isBlank(result));
@@ -28,7 +28,7 @@ class SecurityConfigTest {
 
     @Test
     void shouldCheck() {
-        String encoded = passwordEncoder.encode(PASSWORD_SIMPLE);
+        var encoded = passwordEncoder.encode(PASSWORD_SIMPLE);
         var checked = passwordEncoder.matches(PASSWORD_SIMPLE, encoded);
 
         assertTrue(checked);
