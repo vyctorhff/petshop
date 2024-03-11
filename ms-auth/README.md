@@ -4,10 +4,10 @@
 
 ## Tecnologies
 
-- Postgresql
-- JWT
 - Spring Boot
 - Spring Data
+- Postgresql
+- JWT
 
 ## Swagger
 http://localhost:8085/swagger-ui/index.html
@@ -23,9 +23,7 @@ http://localhost:8085/swagger-ui/index.html
 
 # Next Steps
 
-- Test service for delete 
-- Fix hikari pool configuration
-
+- Set redis cache for users
 
 # Second Thought
 
