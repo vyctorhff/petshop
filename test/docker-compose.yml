@@ -1,0 +1,60 @@
+version: "3"
+
+services:
+  redis:
+    image: redis
+    container_name: petshop-redis
+    networks:
+      - app-net
+    ports:
+      - "6379:6379"
+    volumes:
+      - petshop-storage-redis:/var/lib/redis/data
+
+  postgresql-ms-user:
+    image: postgres
+    container_name: petshop-pg-ms-user
+    networks:
+      - app-net
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=dev
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_DB=petshop-ms-user
+    volumes:
+      - petshop-storage-user:/var/lib/postgresql/data
+    depends_on:
+      - redis 
+  
+  postgresql-ms-auth:
+    image: postgres
+    container_name: petshop-pg-ms-auth
+    networks:
+      - app-net
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_USER=dev
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_DB=petshop-ms-auth
+    volumes:
+      - petshop-storage-auth:/var/lib/postgresql/data
+    depends_on:
+      - redis 
+      - postgresql-ms-user
+
+volumes:
+  petshop-storage-redis:
+    driver: local
+
+  petshop-storage-user:
+    driver: local
+
+  petshop-storage-auth:
+    driver: local
+
+networks:
+  app-net:
+    driver: bridge
+

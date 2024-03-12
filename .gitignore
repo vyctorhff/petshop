@@ -35,3 +35,4 @@ build/
 ### nodejs ###
 dist/
 .env
+node_modules/

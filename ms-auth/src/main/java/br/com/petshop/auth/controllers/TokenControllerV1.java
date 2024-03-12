@@ -23,14 +23,6 @@ public class TokenControllerV1 {
 
     private final TokenService tokenService;
 
-    @GetMapping
-    @Operation(summary = "Return token for authenticated user")
-    public ResponseEntity<TokenResponseDTO> getToken(@RequestBody TokenRequestDTO dto) {
-        // REFACT: check if this route is necessarily
-//        tokenService.getAuthetication(dto);
-        return ResponseEntity.ok().build();
-    }
-
     @PatchMapping
     @Operation(summary = "Refresh token")
     public ResponseEntity<TokenResponseDTO> refresh(@RequestBody TokenRequestDTO dto) {
