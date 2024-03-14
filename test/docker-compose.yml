@@ -3,33 +3,33 @@ version: "3"
 services:
   redis:
     image: redis
-    container_name: petshop-redis
+    container_name: petshop-redis-test
     networks:
       - app-net
     ports:
       - "6379:6379"
     volumes:
-      - petshop-storage-redis:/var/lib/redis/data
+      - petshop-storage-redis-test:/var/lib/redis/data
 
   postgresql-ms-user:
     image: postgres
-    container_name: petshop-pg-ms-user
+    container_name: petshop-pg-ms-user-test
     networks:
       - app-net
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_USER=dev
+      - POSTGRES_USER=test
       - POSTGRES_PASSWORD=123
-      - POSTGRES_DB=petshop-ms-user
+      - POSTGRES_DB=petshop-ms-user-test
     volumes:
-      - petshop-storage-user:/var/lib/postgresql/data
+      - petshop-storage-user-test:/var/lib/postgresql/data
     depends_on:
-      - redis 
+      - redis
   
   postgresql-ms-auth:
     image: postgres
-    container_name: petshop-pg-ms-auth
+    container_name: petshop-pg-ms-auth-test
     networks:
       - app-net
     ports:
@@ -39,19 +39,19 @@ services:
       - POSTGRES_PASSWORD=123
       - POSTGRES_DB=petshop-ms-auth
     volumes:
-      - petshop-storage-auth:/var/lib/postgresql/data
+      - petshop-storage-auth-test:/var/lib/postgresql/data
     depends_on:
       - redis 
       - postgresql-ms-user
 
 volumes:
-  petshop-storage-redis:
+  petshop-storage-redis-test:
     driver: local
 
-  petshop-storage-user:
+  petshop-storage-user-test:
     driver: local
 
-  petshop-storage-auth:
+  petshop-storage-auth-test:
     driver: local
 
 networks:
