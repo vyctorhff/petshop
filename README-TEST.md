@@ -10,7 +10,7 @@ https://docs.cypress.io/guides/getting-started/installing-cypress
 npm install cypress --save-dev
 
 
-## Opening app
+## Opening and run tests
 
 npm run cypress:open
 
