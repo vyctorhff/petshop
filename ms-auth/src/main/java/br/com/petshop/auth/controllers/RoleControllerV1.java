@@ -5,7 +5,9 @@ import br.com.petshop.auth.model.dto.RoleResponseDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -27,8 +29,8 @@ public class RoleControllerV1 {
         return ResponseEntity.ok(list);
     }
 
-    @GetMapping("/name")
-    public ResponseEntity<RoleResponseDTO> findByName(String name) {
+    @GetMapping("/find/{name}/name")
+    public ResponseEntity<RoleResponseDTO> findByName(@PathVariable("name") String name) {
         var dto = RoleResponseDTO.fromEntity(repository.findRoleByName(name));
         return ResponseEntity.ok(dto);
     }
