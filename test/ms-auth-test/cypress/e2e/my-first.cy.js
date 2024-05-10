@@ -1,6 +1,9 @@
 const getRequest = 'https://jsonplaceholder.typicode.com/todos/1'
 const postRequest = 'https://jsonplaceholder.typicode.com/posts'
 
+/****************************************************
+* Requests: post, get etc
+*****************************************************/
 describe('testing requests', () => {
 
   it('get request with json', () => {
@@ -34,5 +37,35 @@ describe('testing requests', () => {
         expect(response.body).to.have.property('title', 'testing title')
         expect(response.body).to.have.property('userId', 3)
       })
+  })
+})
+
+/****************************************************
+* Log
+* Will be show in the test result
+*****************************************************/
+
+/****************************************************
+* Fixture
+*****************************************************/
+describe('learning with fixture', () => {
+
+  beforeEach(() => {
+    // To use this way, it will be needed to put this code
+    // in beforeEach or berofe test function
+    cy.fixture('example.json').as('exampleFixture')
+
+    cy.fixture('example')
+      .then(function(data) {
+        this.data = data
+
+        cy.log(`Hello: ${this.data.email}`)
+      })
+  })
+
+  it('basic', function() {
+    
+    // precisa ser uma function para ter acesso ao this
+    cy.log(this.exampleFixture.email)
   })
 })
