@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "e2e:chrome": "cypress run --browser chrome"
   },
   "devDependencies": {
     "cypress": "^13.6.6"

@@ -1,5 +1,6 @@
-const getRequest = 'https://jsonplaceholder.typicode.com/todos/1'
-const postRequest = 'https://jsonplaceholder.typicode.com/posts'
+const root = 'https://jsonplaceholder.typicode.com'
+const getRequest = `${root}/todos/1`
+const postRequest = `${root}/posts`
 
 /****************************************************
 * Requests: post, get etc
@@ -7,7 +8,7 @@ const postRequest = 'https://jsonplaceholder.typicode.com/posts'
 describe('testing requests', () => {
 
   it('get request with json', () => {
-    cy.request("https://jsonplaceholder.typicode.com/todos/1")
+    cy.request(getRequest)
       .then((response) => {
         const body = response.body
 
@@ -41,11 +42,6 @@ describe('testing requests', () => {
 })
 
 /****************************************************
-* Log
-* Will be show in the test result
-*****************************************************/
-
-/****************************************************
 * Fixture
 *****************************************************/
 describe('learning with fixture', () => {
@@ -69,3 +65,4 @@ describe('learning with fixture', () => {
     cy.log(this.exampleFixture.email)
   })
 })
+
