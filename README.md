@@ -25,12 +25,9 @@ The project will has two main gols:
 
 ## 3 Store
 
-### 3.1 Main focus
+### 3.1 Objective
 
-- Products
-- Tracking
-- Payment
-- Users
+Allow user to buy products for pet online
 
 
 ### 3.2 microservices
@@ -46,11 +43,10 @@ The project will has two main gols:
 ## 4 Adoption
 
 
-### 4.1 Main focus
-- Animals
-- Adopter
-- Veterinary clinit
-- Mural
+### 4.1 Objective
+
+Allow user to adopt a pet by chosen in a list.
+The petshop will evaluate the candidate to check if he/she matchs with the dog's breed
 
 
 ### 4.2 microservices
@@ -176,7 +172,7 @@ The project will has two main gols:
 
 - ms-user
 - ms-auth
-- ms-very-expensive-bank
+- ms-bank
 - ms-storage
 
 
