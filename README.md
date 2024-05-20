@@ -39,6 +39,12 @@ Allow user to buy products for pet online
 - ms-store-product
 - ms-store-tracking
 
+### 3.3 MVP
+- Insert pet
+- Insert client
+- Insert, List services
+- Card
+- Login
 
 ## 4 Adoption
 
@@ -58,6 +64,12 @@ The petshop will evaluate the candidate to check if he/she matchs with the dog's
 
 ![Adoption Microservices overview](https://github.com/vyctorhff/petshop/docs/diagrams/adoption-ms-overview.png)
 
+### MVP
+- Insert pet
+- Insert Adoptante
+- List pets
+- Order Adoption
+- Login
 
 ### 4.3 Adoption Process
 ![Adoption Process flow](https://github.com/vyctorhff/petshop/docs/diagrams/adoption-process.png)
