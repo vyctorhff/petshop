@@ -1,14 +1,15 @@
 const root = 'https://jsonplaceholder.typicode.com'
-const getRequest = `${root}/todos/1`
-const postRequest = `${root}/posts`
+
+const urlGET = `${root}/todos/1`
+const urlPost = `${root}/posts`
 
 /****************************************************
 * Requests: post, get etc
 *****************************************************/
-describe('testing requests', () => {
+describe('GET', () => {
 
   it('get request with json', () => {
-    cy.request(getRequest)
+    cy.request(urlGET)
       .then((response) => {
         const body = response.body
 
@@ -19,11 +20,13 @@ describe('testing requests', () => {
 
   it('get request with json 2', () => {
     // only one should
-    cy.request(getRequest)
+    cy.request(urlGET)
       .its('body')
       .should('have.property', 'title')
   })
+})
 
+describe('POST', () => {
   it('post request with json', () => {
     const body = {
       "userId": 3,
@@ -31,7 +34,7 @@ describe('testing requests', () => {
       "body": "some testing body"
     }
 
-    cy.request('POST', postRequest, body)
+    cy.request('POST', urlPost, body)
       .then((response) => {
         expect(response.status).to.eq(201)
 
