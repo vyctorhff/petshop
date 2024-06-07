@@ -1,21 +1,25 @@
-const root = 'http://localhost:8080'
-const baseUrl = `${root}/role/v1`
+const rootUrl = 'http://localhost:8080'
+const baseUrl = `${rootUrl}/role/v1`
 
-describe('Role: find by name', () => {
+describe('find by name', () => {
     
-    it("should find successfully", () => {
+    it('should find successfully', () => {
         const name = 'person'
         const url = `${baseUrl}/find/${name}/name`
 
-        // get by name
-        // response: name
+        cy.request(url).then((resp) => {
+            const body = resp.body
+            cy.log(body)
+        })
     })
 })
 
-describe('Role: find all', () => {
+describe('find all', () => {
 
-    it("find all", () => {
-        // get baseUrl
-        // response: list
+    it('find all', () => {
+        cy.request(baseUrl).then((resp) => {
+            const body = resp.body
+            cy.log(body)
+        })
     })
 })
