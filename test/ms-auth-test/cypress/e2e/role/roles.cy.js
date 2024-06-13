@@ -15,9 +15,10 @@ describe('find by name', () => {
 })
 
 describe('find all', () => {
+    const url = baseUrl
 
     it('find all', () => {
-        cy.request(baseUrl).then((resp) => {
+        cy.request(url).then((resp) => {
             const body = resp.body
             cy.log(body)
         })
