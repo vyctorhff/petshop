@@ -4,6 +4,10 @@ const urlGET = `${root}/todos/1`
 const urlPost = `${root}/posts`
 
 /****************************************************
+* Assestations
+*****************************************************/
+// https://docs.cypress.io/guides/references/assertions
+/****************************************************
 * Requests: post, get etc
 *****************************************************/
 describe('GET', () => {
