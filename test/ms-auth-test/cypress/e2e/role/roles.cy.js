@@ -8,8 +8,21 @@ describe('find by name', () => {
         const url = `${baseUrl}/find/${name}/name`
 
         cy.request(url).then((resp) => {
-            const body = resp.body
-            cy.log(body)
+            const list = resp.body
+            cy.log(list)
+
+            for (var nameList of list) {
+                expect(nameList).to.equal(name)
+            }
+        })
+    })
+
+    it('should find name that no exists', () => {
+        const name = 'notExists-123'
+        const url = `${baseUrl}/find/${name}/name`
+
+        cy.request(url).then((resp) => {
+            expect(resp.body).to.be.empty
         })
     })
 })
@@ -19,8 +32,16 @@ describe('find all', () => {
 
     it('find all', () => {
         cy.request(url).then((resp) => {
-            const body = resp.body
-            cy.log(body)
+            const list = resp.body
+            cy.log(list)
+
+            for (var nameList of list) {
+                expect(nameList).to.not.be('')
+                expect(nameList).to.not.null
+                expect(nameList).to.not.empty
+
+                // expect(nameList).to.exist
+            }
         })
     })
 })
