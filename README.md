@@ -13,16 +13,6 @@ The project will has two main gols:
 - Store: sell products
 - Adoption: control the flow of adoption a pet
 
-
-# Next Steps
-
-- Change for java implementation(in progress)
-- Gateway: config
-- Gateway: add uc for create user with auth
-- ms-user: add basic libs
-- ms-user: add controllers
-
-
 ## 3 Store
 
 ### 3.1 Objective
