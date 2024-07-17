@@ -1,7 +1,7 @@
 
-dbs_up:
+db-up:
 	sudo docker start petshop-pg-ms-auth
 
-dbs_down:
+db-down:
 	sudo docker stop petshop-pg-ms-auth
 
