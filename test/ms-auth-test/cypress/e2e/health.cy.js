@@ -6,7 +6,7 @@ describe('Health', () => {
 
     it('get status up', () => {
         cy.request(url).then((resp) => {
-            cy.log(resp.body)
+            expect(resp.body.status).to.equal('UP')
         })
     })
 })
