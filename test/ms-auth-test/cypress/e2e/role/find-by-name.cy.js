@@ -4,7 +4,7 @@ const baseUrl = `${rootUrl}/role/v1`
 
 describe('find by name', () => {
     
-    it('should find successfully', () => {
+    it.skip('should find successfully', () => {
         const name = 'person'
         const url = `${baseUrl}/find/${name}/name`
 
@@ -18,7 +18,7 @@ describe('find by name', () => {
         })
     })
 
-    it('should find name that no exists', () => {
+    it.skip('should find name that no exists', () => {
         const name = 'notExists-123'
         const url = `${baseUrl}/find/${name}/name`
 

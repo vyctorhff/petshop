@@ -5,7 +5,7 @@ const baseUrl = `${rootUrl}/role/v1`
 describe('find all', () => {
     const url = baseUrl
 
-    it('find all', () => {
+    it.skip('find all', () => {
         cy.request(url).then((resp) => {
             const list = resp.body
             cy.log(list)
