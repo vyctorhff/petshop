@@ -23,3 +23,10 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+Cypress.Commands.add('doLogin', () => {
+    Cypress.env('token', '')
+})
+
+Cypress.Commands.add('refreshToken', () => {
+    Cypress.env('token', '')
+})
