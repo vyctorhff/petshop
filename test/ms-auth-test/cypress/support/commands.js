@@ -1,32 +1,28 @@
 // ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
 // ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-Cypress.Commands.add('doLogin', () => {
-    Cypress.env('token', '')
+Cypress.Commands.add('doLoginAdmin', () => {
+    const enrollment = '11223344'
+    const password =  '123'
+
+    return cy.doLogin(enrollment, password)
 })
 
+// ***********************************************
+// ***********************************************
+Cypress.Commands.add('doLogin', (enrollment, pass) => {
+    const rootUrl = 'http://localhost:8080'
+    const baseUrl = `${rootUrl}/auth/v1`
+
+    cy.request('GET', baseUrl, userAdmin).then((resp) => {
+        const {time, token, refresh} = resp.body
+
+        Cypress.env('token', token)
+        Cypress.env('refresh', refresh)
+    })
+})
+
+// ***********************************************
+// ***********************************************
 Cypress.Commands.add('refreshToken', () => {
-    Cypress.env('token', '')
+    // TODO: 
 })
