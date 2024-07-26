@@ -12,6 +12,10 @@
 ## Swagger
 http://localhost:8085/swagger-ui/index.html
 
+## Run local
+
+./mvnw spring-boot:run
+
 ## Features
 
 - It should be able to create an authentication entity
