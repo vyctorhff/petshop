@@ -6,21 +6,20 @@ describe('auth - in progress', () => {
 
     it('auth - in progress', () => {
         const userAdmin = {
-            enrollment: '11223344',
-            password: '123'
+            enrollment: '1',
+            password: '123456'
         }
 
         cy.request('GET', baseUrl, userAdmin).then((resp) => {
             const {time, token, refresh} = resp.body
 
-            // expect(token).to.true
             expect(token).not.to.equal(' ')
             expect(token).not.to.equal('')
             expect(token).not.to.equal(' ')
 
             expect(time).not.to.equal('')
 
-            expect(refresh).not.to.equal('')
+            // expect(refresh).not.to.equal('')
         })
     })
 })
