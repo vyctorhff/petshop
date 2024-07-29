@@ -30,9 +30,9 @@ public class SecurityConfig {
             .authorizeHttpRequests(registry -> {
                 registry.requestMatchers(HttpMethod.GET, "/health").permitAll();
 
-                registry.requestMatchers(HttpMethod.POST, "/auth/v1").permitAll();
-//                registry.requestMatchers(HttpMethod.POST, "/auth/v1").hasRole("admin"); // block after testing
                 registry.requestMatchers(HttpMethod.GET, "/auth/v1").permitAll();
+                registry.requestMatchers(HttpMethod.POST, "/user/v1").permitAll();
+//                registry.requestMatchers(HttpMethod.POST, "/auth/v1").hasRole("admin"); // block after testing
 
                 registry.anyRequest().authenticated();
             })
