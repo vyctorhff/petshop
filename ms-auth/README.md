@@ -27,6 +27,7 @@ http://localhost:8085/swagger-ui/index.html
 
 # Next Steps
 
+- Add refresh token
 - Change package and files to follow clean architecture
 - Set redis cache for users
 
