@@ -122,4 +122,12 @@ describe('Env', () => {
     expect(envText).not.to.empty
     cy.log(`Retrieved env: ${envText}`)
   })
+
+  it('using variable defined in cypress.config.js', () => {
+    const content = Cypress.env('testEnv')
+    cy.log(content)
+
+    const authApi = `${Cypress.env('baseUrl')}/auth/v1`
+    cy.log(authApi)
+  })
 })
