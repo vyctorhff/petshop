@@ -1,6 +1,7 @@
 package br.com.petshop.auth.services;
 
 import br.com.petshop.auth.infra.security.UserAuthentication;
+import br.com.petshop.auth.model.User;
 import br.com.petshop.auth.model.dto.LoginRequestDTO;
 import br.com.petshop.auth.model.dto.TokenResponseDTO;
 import lombok.RequiredArgsConstructor;
@@ -23,8 +24,11 @@ public class LoginService {
         var authenticate = this.authenticationManager.authenticate(user);
 
         UserAuthentication principal = (UserAuthentication) authenticate.getPrincipal();
-        var token = tokenService.generate(principal.getUser());
+        User userEntity = principal.getUser();
 
-        return TokenResponseDTO.createWithNow(token);
+        var token = tokenService.generate(userEntity);
+        var refresh = tokenService.createRefresh(userEntity, token);
+
+        return TokenResponseDTO.createWithNow(token, refresh.getRefresh());
     }
 }

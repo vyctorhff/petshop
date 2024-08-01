@@ -25,7 +25,7 @@ public class TokenControllerV1 {
     @PatchMapping
     @Operation(summary = "Refresh token")
     public ResponseEntity<TokenResponseDTO> refresh(@RequestBody TokenRequestDTO dto) {
-        tokenService.refresh();
-        return ResponseEntity.ok().build();
+        var token = tokenService.refresh(dto);
+        return ResponseEntity.ok(TokenResponseDTO.createWithNow(token));
     }
 }
