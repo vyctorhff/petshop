@@ -12,6 +12,7 @@ import org.springframework.test.util.ReflectionTestUtils;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.fail;
 
 @ExtendWith({MockitoExtension.class})
 class TokenServiceTest {
@@ -45,11 +46,21 @@ class TokenServiceTest {
     }
 
     private static User getUser() {
-        User user = new User();
-        user.setName("name");
-        user.setAlias("alias");
-        user.setEnrollment(2);
-        user.setPass("1234");
-        return user;
+        return User.builder()
+            .name("name")
+            .alias("alias")
+            .enrollment(2)
+            .pass("1234")
+            .build();
+    }
+
+    @Test
+    void shouldCreateRefresh() {
+        fail();
+    }
+
+    @Test
+    void shouldRefreshToken() {
+        fail();
     }
 }

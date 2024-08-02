@@ -1,5 +1,6 @@
 package br.com.petshop.auth.model;
 
+import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -11,6 +12,21 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.*;
 
 class TokenTest {
+
+    @Test
+    void shouldCreateUUID() {
+        var user = new User();
+        user.setEnrollment(2);
+
+        var jwt = "alksjdflasdfasj23ç4123jq23rjlf";
+
+        var token = new Token(user, jwt);
+        String refresh = token.getRefresh();
+
+        assertNotNull(refresh);
+        assertTrue(StringUtils.isNotBlank(refresh));
+    }
+
     @Test
     void shouldValidAsValid() {
         var token = new Token();
