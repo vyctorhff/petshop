@@ -36,6 +36,10 @@ public class Token {
         this.updateCreateAt();
     }
 
+    public boolean canRefresh(Integer enrollment) {
+        return checkEnrollment(enrollment) && isValid();
+    }
+
     public boolean isValid() {
         return LocalDateTime.now().getDayOfYear() == createdAt.getDayOfYear();
     }

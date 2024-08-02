@@ -77,16 +77,14 @@ public class TokenService {
 
     public Token refresh(TokenRequestDTO dto) {
         var token = tokenRepositoy.findByRefresh(dto.refresh());
-        var error = new IllegalStateException("could not refresh token!");
 
-        if (!token.checkEnrollment(dto.enrollment()) || !token.isValid()) {
-            throw error;
+        if (!token.canRefresh(dto.enrollment())) {
+            throw new IllegalStateException("could not refresh token!");
         }
 
         token.setToken(generate(token.getUser()));
         token.updateCreateAt();
 
-        tokenRepositoy.save(token);
-        return token;
+        return tokenRepositoy.save(token);
     }
 }
