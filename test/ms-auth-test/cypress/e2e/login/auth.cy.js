@@ -1,31 +1,16 @@
-// TODO: extract to one place
-// const rootUrl = 'http://localhost:8080'
-// const baseUrl = `${rootUrl}/auth/v1`
-
 const authApi = `${Cypress.env('baseUrl')}/auth/v1`
+const admin = Cypress.env('userAdmin')
 
-describe('auth - in progress', () => {
+describe('auth', () => {
 
-    it('auth - in progress', () => {
-        // TODO: update to config env
-        const userAdmin = {
-            enrollment: '1',
-            password: '123456'
-        }
+    it('auth with token', () => {
 
-        // cy.request('GET', baseUrl, userAdmin).then((resp) => {
-        cy.request('GET', authApi, userAdmin).then((resp) => {
+        cy.request('GET', authApi, admin).then((resp) => {
             const {time, token, refresh} = resp.body
 
-            // expect(token).not.to.be.oneOf([undefined, null, '', ' '])
-
-            expect(token).not.to.equal(' ')
-            expect(token).not.to.equal('')
-            expect(token).not.to.equal(' ')
-
+            expect(token).not.to.be.oneOf([undefined, null, '', ' '])
             expect(time).not.to.equal('')
-
-            // expect(refresh).not.to.equal('')
+            expect(refresh).not.to.oneOf([undefined, null, '', ' '])
         })
     })
 })
