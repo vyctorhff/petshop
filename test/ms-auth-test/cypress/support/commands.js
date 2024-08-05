@@ -1,24 +1,16 @@
 // ***********************************************
 // ***********************************************
 Cypress.Commands.add('doLoginAdmin', () => {
-    const enrollment = '11223344'
-    const password =  '123'
-
-    return cy.doLogin(enrollment, password)
+    const admin = Cypress.env('userAdmin')
+    return cy.doLogin(admin)
 })
 
 // ***********************************************
 // ***********************************************
-Cypress.Commands.add('doLogin', (enrollment, pass) => {
-    const rootUrl = 'http://localhost:8080'
-    const baseUrl = `${rootUrl}/auth/v1`
-
-    cy.request('GET', baseUrl, userAdmin).then((resp) => {
-        const {time, token, refresh} = resp.body
-
-        Cypress.env('token', token)
-        Cypress.env('refresh', refresh)
-    })
+Cypress.Commands.add('doLogin', (user) => {
+    // TODO: check if need 
+    const authApi = `${Cypress.env('baseUrl')}/auth/v1`
+    return cy.request('GET', authApi, user)
 })
 
 // ***********************************************
