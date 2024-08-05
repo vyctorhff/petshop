@@ -9,7 +9,7 @@ module.exports = defineConfig({
   env: {
     testEnv: 'defined in cypress.config.js - hello world',
     baseUrl: 'http://localhost:8080',
-    admin: {
+    userAdmin: {
       enrollment: '1',
       password: '123456',
     },
