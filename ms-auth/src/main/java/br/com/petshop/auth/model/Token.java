@@ -30,6 +30,8 @@ public class Token {
     private LocalDateTime createdAt;
 
     public Token(User user, String token) {
+        this.user = user;
+
         this.refresh = UUID.randomUUID().toString();
         this.token = token;
 
