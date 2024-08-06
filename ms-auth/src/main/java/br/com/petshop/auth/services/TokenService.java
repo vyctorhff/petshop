@@ -78,7 +78,7 @@ public class TokenService {
     public Token refresh(TokenRequestDTO dto) {
         var token = tokenRepositoy.findByRefresh(dto.refresh());
 
-        if (!token.canRefresh(dto.enrollment())) {
+        if (token == null || !token.canRefresh(dto.enrollment())) {
             throw new IllegalStateException("could not refresh token!");
         }
 
