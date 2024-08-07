@@ -8,6 +8,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -15,12 +18,14 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import java.time.LocalDateTime;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -62,14 +67,7 @@ class TokenServiceTest {
         assertEquals("2", validate);
     }
 
-    private static User getUser() {
-        return User.builder()
-            .name("name")
-            .alias("alias")
-            .enrollment(2)
-            .pass("1234")
-            .build();
-    }
+
 
     @Test
     void shouldCreateRefresh() {
@@ -90,8 +88,9 @@ class TokenServiceTest {
 
         sut.refresh(dto);
 
-        assertNotEquals(tokenResult, tokenResult.getToken());
         assertEquals(TOKEN_REFRESH, tokenResult.getRefresh());
+
+        fail("check if token save is different then previous token");
     }
 
     @Test
@@ -103,6 +102,56 @@ class TokenServiceTest {
             .thenReturn(null);
 
         assertThrows(IllegalStateException.class, () -> sut.refresh(dto));
+    }
+
+    @ParameterizedTest
+    @MethodSource("sourceInvalidCheck")
+    void shouldRefreshTokenWithInvalidCheck(Token token, Integer enrollment) {
+        var dto = new TokenRequestDTO(enrollment, TOKEN_REFRESH);
+
+        when(tokenRepositoy.findByRefresh(dto.refresh()))
+            .thenReturn(token);
+
+        assertThrows(IllegalStateException.class, () -> sut.refresh(dto));
+    }
+
+    private static Stream<Arguments> sourceInvalidCheck() {
+        var user = getUser();
+
+        var token = getToken();
+        var wrongEnrollment = Arguments.of(token, -2);
+
+        token = getToken();
+        token.setCreatedAt(LocalDateTime.now().minusDays(1));
+        var wrongDate = Arguments.of(token, user.getEnrollment());
+
+        return Stream.of(
+            wrongEnrollment,
+            wrongDate
+        );
+    }
+
+    private static User getUser() {
+        return User.builder()
+            .name("name")
+            .alias("alias")
+            .enrollment(2)
+            .pass("1234")
+            .build();
+    }
+
+    private static TokenRequestDTO getTokenRequestDTO() {
+        var user = getUser();
+        return new TokenRequestDTO(-2, TOKEN_REFRESH);
+    }
+
+    private static Token getToken() {
+        var user = getUser();
+
+        var token = new Token(user, TOKEN);
+        token.setRefresh(TOKEN_REFRESH);
+
+        return token;
     }
 
     @Test
@@ -122,7 +171,7 @@ class TokenServiceTest {
     @Test
     void shouldRefreshTokenInvalidBecauseOneDay() {
         var user = getUser();
-        var dto = new TokenRequestDTO(-2, TOKEN_REFRESH);
+        var dto = new TokenRequestDTO(user.getEnrollment(), TOKEN_REFRESH);
 
         var tokenResult = new Token(user, TOKEN);
         tokenResult.setRefresh(TOKEN_REFRESH);
