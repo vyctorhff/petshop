@@ -14,6 +14,11 @@ public class ValidationException extends PetshopAuthException {
         this.errors = new ArrayList<>();
     }
 
+    public ValidationException(String msg) {
+        this.errors = new ArrayList<>();
+        this.errors.add(msg);
+    }
+
     public void add(String msg) {
         errors.add(msg);
     }
