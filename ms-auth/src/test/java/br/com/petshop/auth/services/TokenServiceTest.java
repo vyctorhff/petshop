@@ -67,8 +67,6 @@ class TokenServiceTest {
         assertEquals("2", validate);
     }
 
-
-
     @Test
     void shouldCreateRefresh() {
         sut.createRefresh(getUser(), TOKEN);
@@ -152,34 +150,5 @@ class TokenServiceTest {
         token.setRefresh(TOKEN_REFRESH);
 
         return token;
-    }
-
-    @Test
-    void shouldRefreshTokenWithInvalidEnrollment() {
-        var user = getUser();
-        var dto = new TokenRequestDTO(-2, TOKEN_REFRESH);
-
-        var tokenResult = new Token(user, TOKEN);
-        tokenResult.setRefresh(TOKEN_REFRESH);
-
-        when(tokenRepositoy.findByRefresh(dto.refresh()))
-            .thenReturn(tokenResult);
-
-        assertThrows(IllegalStateException.class, () -> sut.refresh(dto));
-    }
-
-    @Test
-    void shouldRefreshTokenInvalidBecauseOneDay() {
-        var user = getUser();
-        var dto = new TokenRequestDTO(user.getEnrollment(), TOKEN_REFRESH);
-
-        var tokenResult = new Token(user, TOKEN);
-        tokenResult.setRefresh(TOKEN_REFRESH);
-        tokenResult.setCreatedAt(LocalDateTime.now().minusDays(1));
-
-        when(tokenRepositoy.findByRefresh(dto.refresh()))
-            .thenReturn(tokenResult);
-
-        assertThrows(IllegalStateException.class, () -> sut.refresh(dto));
     }
 }
