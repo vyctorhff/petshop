@@ -11,6 +11,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -41,6 +43,9 @@ class TokenServiceTest {
 
     @Mock
     private TokenRepositoy tokenRepositoy;
+
+    @Captor
+    private ArgumentCaptor<Token> captorToken;
 
     @BeforeEach
     void setUp() {
@@ -88,7 +93,10 @@ class TokenServiceTest {
 
         assertEquals(TOKEN_REFRESH, tokenResult.getRefresh());
 
-        fail("check if token save is different then previous token");
+        verify(tokenRepositoy).save(captorToken.capture());
+        Token tokenUpdated = captorToken.getValue();
+
+        assertNotEquals(tokenUpdated.getToken(), TOKEN_REFRESH);
     }
 
     @Test
