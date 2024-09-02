@@ -1,11 +1,11 @@
-const authApi = `${Cypress.env('baseUrl')}/auth/v1`
+const api = `${Cypress.env('baseUrl')}/auth/v1`
 const admin = Cypress.env('userAdmin')
 
 describe('auth', () => {
 
     it('auth with token', () => {
 
-        cy.request('GET', authApi, admin).then((resp) => {
+        cy.request('GET', api, admin).then((resp) => {
             const {time, token, refresh} = resp.body
 
             expect(token).not.to.be.oneOf([undefined, null, '', ' '])
