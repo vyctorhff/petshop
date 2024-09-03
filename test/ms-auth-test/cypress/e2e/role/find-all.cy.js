@@ -1,12 +1,8 @@
-// TODO: extract to one place
-const rootUrl = 'http://localhost:8080'
-const baseUrl = `${rootUrl}/role/v1`
+const api = `${Cypress.env('baseUrl')}/role/v1`
 
 describe('find all', () => {
-    const url = baseUrl
-
     it.skip('find all', () => {
-        cy.request(url).then((resp) => {
+        cy.request(api).then((resp) => {
             const list = resp.body
             cy.log(list)
 
