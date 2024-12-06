@@ -27,7 +27,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -144,11 +143,6 @@ class TokenServiceTest {
             .enrollment(2)
             .pass("1234")
             .build();
-    }
-
-    private static TokenRequestDTO getTokenRequestDTO() {
-        var user = getUser();
-        return new TokenRequestDTO(-2, TOKEN_REFRESH);
     }
 
     private static Token getToken() {
