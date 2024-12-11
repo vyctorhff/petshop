@@ -1,7 +1,7 @@
 package br.com.petshop.auth.controllers;
 
-import br.com.petshop.auth.model.dto.LoginRequestDTO;
-import br.com.petshop.auth.model.dto.TokenResponseDTO;
+import br.com.petshop.auth.controllers.dto.LoginRequestDTO;
+import br.com.petshop.auth.controllers.dto.TokenResponseDTO;
 import br.com.petshop.auth.services.LoginService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
