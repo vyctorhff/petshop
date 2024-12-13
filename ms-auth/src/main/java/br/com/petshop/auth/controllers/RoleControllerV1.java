@@ -1,7 +1,7 @@
 package br.com.petshop.auth.controllers;
 
 import br.com.petshop.auth.infra.RoleRepository;
-import br.com.petshop.auth.model.dto.RoleResponseDTO;
+import br.com.petshop.auth.controllers.dto.RoleResponseDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

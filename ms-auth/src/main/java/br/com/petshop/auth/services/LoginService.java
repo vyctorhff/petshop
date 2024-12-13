@@ -2,8 +2,8 @@ package br.com.petshop.auth.services;
 
 import br.com.petshop.auth.infra.security.UserAuthentication;
 import br.com.petshop.auth.model.User;
-import br.com.petshop.auth.model.dto.LoginRequestDTO;
-import br.com.petshop.auth.model.dto.TokenResponseDTO;
+import br.com.petshop.auth.controllers.dto.LoginRequestDTO;
+import br.com.petshop.auth.controllers.dto.TokenResponseDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;

@@ -5,7 +5,7 @@ import br.com.petshop.auth.infra.RoleRepository;
 import br.com.petshop.auth.infra.UserRepository;
 import br.com.petshop.auth.model.Role;
 import br.com.petshop.auth.model.User;
-import br.com.petshop.auth.model.dto.CreateAuthenticationRequestDTO;
+import br.com.petshop.auth.controllers.dto.CreateAuthenticationRequestDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

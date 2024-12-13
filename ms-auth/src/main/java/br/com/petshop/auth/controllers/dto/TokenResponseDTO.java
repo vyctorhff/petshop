@@ -1,4 +1,4 @@
-package br.com.petshop.auth.model.dto;
+package br.com.petshop.auth.controllers.dto;
 
 import br.com.petshop.auth.model.Token;
 import org.apache.commons.lang3.StringUtils;

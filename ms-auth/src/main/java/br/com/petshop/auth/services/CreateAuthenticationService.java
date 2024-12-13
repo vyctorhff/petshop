@@ -1,7 +1,7 @@
 package br.com.petshop.auth.services;
 
-import br.com.petshop.auth.model.dto.CreateAuthenticationRequestDTO;
-import br.com.petshop.auth.model.dto.TokenResponseDTO;
+import br.com.petshop.auth.controllers.dto.CreateAuthenticationRequestDTO;
+import br.com.petshop.auth.controllers.dto.TokenResponseDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

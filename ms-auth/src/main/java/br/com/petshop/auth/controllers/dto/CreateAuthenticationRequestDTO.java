@@ -1,4 +1,4 @@
-package br.com.petshop.auth.model.dto;
+package br.com.petshop.auth.controllers.dto;
 
 import br.com.petshop.auth.model.Role;
 import br.com.petshop.auth.model.User;

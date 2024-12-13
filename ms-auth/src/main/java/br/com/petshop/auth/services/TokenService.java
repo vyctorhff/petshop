@@ -3,7 +3,7 @@ package br.com.petshop.auth.services;
 import br.com.petshop.auth.infra.TokenRepositoy;
 import br.com.petshop.auth.model.Token;
 import br.com.petshop.auth.model.User;
-import br.com.petshop.auth.model.dto.TokenRequestDTO;
+import br.com.petshop.auth.controllers.dto.TokenRequestDTO;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;

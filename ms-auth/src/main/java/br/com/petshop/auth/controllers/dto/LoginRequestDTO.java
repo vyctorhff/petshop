@@ -1,4 +1,4 @@
-package br.com.petshop.auth.model.dto;
+package br.com.petshop.auth.controllers.dto;
 
 public record LoginRequestDTO(String enrollment, String password) {
 }

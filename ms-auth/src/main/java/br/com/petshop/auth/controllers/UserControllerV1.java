@@ -2,9 +2,9 @@ package br.com.petshop.auth.controllers;
 
 import br.com.petshop.auth.infra.UserRepository;
 import br.com.petshop.auth.model.User;
-import br.com.petshop.auth.model.dto.CreateAuthenticationRequestDTO;
-import br.com.petshop.auth.model.dto.TokenResponseDTO;
-import br.com.petshop.auth.model.dto.UserResponseDTO;
+import br.com.petshop.auth.controllers.dto.CreateAuthenticationRequestDTO;
+import br.com.petshop.auth.controllers.dto.TokenResponseDTO;
+import br.com.petshop.auth.controllers.dto.UserResponseDTO;
 import br.com.petshop.auth.services.CreateAuthenticationService;
 import br.com.petshop.auth.services.DeleteAuthenticationService;
 import io.swagger.v3.oas.annotations.Operation;
