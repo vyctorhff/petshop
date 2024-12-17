@@ -1,5 +1,6 @@
 package br.com.petshop.auth.model.dto;
 
+import br.com.petshop.auth.controllers.dto.CreateAuthenticationRequestDTO;
 import br.com.petshop.auth.helper.UserHelper;
 import br.com.petshop.auth.model.User;
 import org.junit.jupiter.api.BeforeEach;

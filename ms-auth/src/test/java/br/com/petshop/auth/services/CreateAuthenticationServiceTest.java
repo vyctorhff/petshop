@@ -6,7 +6,7 @@ import br.com.petshop.auth.infra.EnrollmentNextValueRepository;
 import br.com.petshop.auth.infra.RoleRepository;
 import br.com.petshop.auth.infra.UserRepository;
 import br.com.petshop.auth.model.User;
-import br.com.petshop.auth.model.dto.CreateAuthenticationRequestDTO;
+import br.com.petshop.auth.controllers.dto.CreateAuthenticationRequestDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

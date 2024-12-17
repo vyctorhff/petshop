@@ -2,7 +2,7 @@ package br.com.petshop.auth.helper;
 
 import br.com.petshop.auth.model.Role;
 import br.com.petshop.auth.model.User;
-import br.com.petshop.auth.model.dto.CreateAuthenticationRequestDTO;
+import br.com.petshop.auth.controllers.dto.CreateAuthenticationRequestDTO;
 
 import java.util.List;
 

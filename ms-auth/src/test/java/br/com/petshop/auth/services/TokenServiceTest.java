@@ -3,7 +3,7 @@ package br.com.petshop.auth.services;
 import br.com.petshop.auth.infra.TokenRepositoy;
 import br.com.petshop.auth.model.Token;
 import br.com.petshop.auth.model.User;
-import br.com.petshop.auth.model.dto.TokenRequestDTO;
+import br.com.petshop.auth.controllers.dto.TokenRequestDTO;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -122,7 +122,6 @@ class TokenServiceTest {
 
     private static Stream<Arguments> sourceInvalidCheck() {
         var user = getUser();
-
         var token = getToken();
         var wrongEnrollment = Arguments.of(token, -2);
 
@@ -147,7 +146,6 @@ class TokenServiceTest {
 
     private static Token getToken() {
         var user = getUser();
-
         var token = new Token(user, TOKEN);
         token.setRefresh(TOKEN_REFRESH);
 
