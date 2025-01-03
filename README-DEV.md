@@ -18,16 +18,20 @@ resourse
     - migrations
 `
 
-# dtos
+## dtos
   ${name}RequestDTO.java
-  ${name}RequestDTO.java
+  ${name}ResponseDTO.java
 
-# migrations
+## migrations
 
 Init project to run the migrations
+
+### Folder
+/src/main/resources/db/migration
 
 
 ## Exection
 
+Run on console
 ./mvnw spring-boot:run
 
