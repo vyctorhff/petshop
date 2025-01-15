@@ -30,10 +30,10 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith({MockitoExtension.class})
-class CreateAuthenticationServiceTest {
+class CreateUsertionServiceTest {
 
     @InjectMocks
-    private CreateAuthenticationService sut;
+    private CreateUsertionService sut;
 
     @Mock
     private UserRepository userRepository;

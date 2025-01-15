@@ -5,8 +5,8 @@ import br.com.petshop.auth.model.User;
 import br.com.petshop.auth.controllers.dto.CreateAuthenticationRequestDTO;
 import br.com.petshop.auth.controllers.dto.TokenResponseDTO;
 import br.com.petshop.auth.controllers.dto.UserResponseDTO;
-import br.com.petshop.auth.services.CreateAuthenticationService;
-import br.com.petshop.auth.services.DeleteAuthenticationService;
+import br.com.petshop.auth.services.CreateUsertionService;
+import br.com.petshop.auth.services.DeleteUserService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -27,15 +27,15 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserControllerV1 {
 
-    private final CreateAuthenticationService createService;
+    private final CreateUsertionService createService;
 
-    private final DeleteAuthenticationService deleteService;
+    private final DeleteUserService deleteService;
 
     private final UserRepository userRepository;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    @Operation(summary = "Create the authentication")
+    @Operation(summary = "Create the user")
     public ResponseEntity<TokenResponseDTO> create(@RequestBody CreateAuthenticationRequestDTO dto) {
         var tokenDTO = createService.create(dto);
         return ResponseEntity.ok(tokenDTO);
@@ -60,7 +60,7 @@ public class UserControllerV1 {
     }
 
     @DeleteMapping("/{enrollment}")
-    @Operation(summary = "Remove authentication")
+    @Operation(summary = "Remove user")
     public ResponseEntity<Void> delete(@PathVariable Integer enrollment) {
         this.deleteService.process(enrollment);
         return ResponseEntity.noContent().build();

@@ -20,10 +20,10 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith({MockitoExtension.class})
-class DeleteAuthenticationServiceTest {
+class DeleteUserServiceTest {
 
     @InjectMocks
-    private DeleteAuthenticationService sut;
+    private DeleteUserService sut;
 
     @Mock
     private UserRepository repository;

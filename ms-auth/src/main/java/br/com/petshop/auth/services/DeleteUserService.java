@@ -11,7 +11,7 @@ import org.springframework.web.server.ResponseStatusException;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class DeleteAuthenticationService {
+public class DeleteUserService {
 
     private final UserRepository repository;
 

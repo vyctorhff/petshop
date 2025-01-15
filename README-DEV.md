@@ -4,7 +4,9 @@
 
 `
 java
-  - config
+  - application
+  - infra
+    - config
   - util
   - share
   - expections
