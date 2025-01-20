@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/auth/v1")
 @RequiredArgsConstructor
 @Tag(name = "Endpoint for authentication")
 public class UserAuthenticationControllerV1 {
@@ -27,14 +27,14 @@ public class UserAuthenticationControllerV1 {
 
     private final TokenService tokenService;
 
-    @GetMapping("/v1")
+    @GetMapping
     @Operation(summary = "Do authentication for a user")
     public ResponseEntity<TokenResponseDTO> login(@RequestBody LoginRequestDTO dto) {
         var tokenDTO = loginService.login(dto);
         return ResponseEntity.ok(tokenDTO);
     }
 
-    @PatchMapping("/token/v1")
+    @PatchMapping("/token")
     @ResponseStatus(HttpStatus.ACCEPTED)
     @Operation(summary = "Refresh token")
     public ResponseEntity<TokenResponseDTO> refresh(@RequestBody TokenRequestDTO dto) {

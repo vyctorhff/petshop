@@ -21,7 +21,6 @@ public class DeleteUserService {
         }
 
         User user = repository.findByEnrollment(enrollment);
-
         if (user == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
