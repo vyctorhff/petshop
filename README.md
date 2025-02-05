@@ -4,7 +4,7 @@
 ## 1 Object
 
 Create a backend for a petshop whos wants to sell products and adopt pets.
-The main go is to practie: java, spring, deno, typescript, aws bucket, activeMQ, gRPC.
+The main go is to practice: spring, quarkus, java, deno, typescript, aws bucket, clean architecture, gRPC.
 
 
 ## 2 Resume
@@ -176,34 +176,4 @@ The petshop will evaluate the candidate to check if he/she matchs with the dog's
 - ms-auth
 - ms-bank
 - ms-storage
-
-
-### 5.1 User Cases
-
-#### 5.1.1 Authentication
-
-- Passing id user and pass to ms-auth
-- Checking id user in ms-user
-- Generate jwt token and refresh token
-- Delete authentication
-
-
-#### 5.1.2 Create user
-- Passing perfil id, name, document number
-- Post to ms-user
-- Checking if user login exists
-- Return 201 create status
-
-
-#### 5.1.3 create file aws bucket
-
-- Post to ms-storage
-- Save on aws bucket
-- Save file key on database
-- Return file key
-
-
-#### 5.1.4 Search perfils
-- Get to ms-user
-- Return a list with perfils
 
